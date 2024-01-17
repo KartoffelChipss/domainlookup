@@ -5,19 +5,19 @@ function search(query) {
 
     if (isTld(query)) {
         console.log("Searching for TLD:", query)
-        //window.location.href = `/tld/${query}`;
+        window.location.href = `/tld/${query}`;
         return;
     }
 
     if (isDomain(query)) {
         console.log("Searching for Domain:", query)
-        //window.location.href = `/domain/${query}`;
+        window.location.href = `/domain/${query}`;
         return;
     }
 
     if (isIP(query)) {
         console.log("Searching for IP:", query)
-        //window.location.href = `/ip/${query}`;
+        window.location.href = `/ip/${query}`;
         return;
     }
 

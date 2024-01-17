@@ -35,16 +35,25 @@ app.get("/", (req, res) => {
     renderTemplate(res, req, "main.ejs", {});
 })
 
-app.get("/domain/:domain", (req, res) => {
-    renderTemplate(res, req, "main.ejs", {});
+app.get("/domain/:query", (req, res) => {
+    renderTemplate(res, req, "info.ejs", {
+        query: req.params.query,
+        queryType: "domain"
+    });
 })
 
-app.get("/tld/:tld", (req, res) => {
-    renderTemplate(res, req, "main.ejs", {});
+app.get("/tld/:query", (req, res) => {
+    renderTemplate(res, req, "info.ejs", {
+        query: req.params.query,
+        queryType: "tld"
+    });
 })
 
-app.get("/ip/:ip", (req, res) => {
-    renderTemplate(res, req, "main.ejs", {});
+app.get("/ip/:query", (req, res) => {
+    renderTemplate(res, req, "info.ejs", {
+        query: req.params.query,
+        queryType: "ip"
+    });
 })
 
 app.listen(process.env.PORT, null, null, () =>
