@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domainlookup</title>
+
+    <link href="/assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="loader"></div>
+
+    <main>
+        <div class="searchmain">
+            <h1>Domain Lookup</h1>
+            <div class="inputbox">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 15L21 21" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#fefefe" stroke-width="2"></path> </g></svg>
+                <input type="text" placeholder="Domain, IP or TLD" onkeydown="searchKeyDown(this)">
+                <button type="button" onclick="search(this.parentElement.querySelector('input').value)">Find</button>
+            </div>
+            <span id="unkowntype">You need to enter a Domain, IP or Top-Level-Domain</span>
+        </div>
+    </main>
+
+    <script src="/assets/js/assets.js"></script>
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>

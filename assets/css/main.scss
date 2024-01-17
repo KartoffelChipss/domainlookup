@@ -1,0 +1,97 @@
+@import url("./assets.css");
+
+main {
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchmain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 90%;
+
+    h1 {
+        margin: 0;
+        margin-bottom: 25px;
+        font-size: 35px;
+
+        // background: linear-gradient(to right bottom, var(--text-1), var(--text-2) 100%);
+        // background-clip: text;
+        // -webkit-text-fill-color: transparent;
+    }
+
+    .inputbox {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        max-width: 100%;
+        height: 55px;
+        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0.07);
+
+        input {
+            width: 350px;
+            height: 25px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            padding: 15px 0;
+            padding-right: 15px;
+            font-size: 20px;
+            color: var(--text-1);
+            border-radius: 3px;
+
+            @media screen and (max-width: 1000px) {
+                padding: 15px;
+            }
+        }
+
+        svg {
+            height: 25px;
+            width: 25px;
+            margin: 0 15px;
+
+            @media screen and (max-width: 1000px) {
+                display: none;
+            }
+        }
+
+        button {
+            height: 100%;
+            margin: 0;
+            padding: 0 20px;
+
+            font-size: 18px;
+            border-radius: 3px;
+            background-color: var(--blue-2);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: filter .2s ease-in-out;
+
+            &:hover {
+                cursor: pointer;
+                filter: brightness(.8);
+            }
+        }
+    }
+
+    #unkowntype {
+        display: none;
+        color: var(--danger);
+        margin-top: 25px;
+
+        &._shown {
+            display: block;
+        }
+    }
+}
