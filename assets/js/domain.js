@@ -1,60 +1,11 @@
 const query = document.getElementById("query").value;
 const whoislist = document.getElementById("whoislist");
 
-fetchAsync(`/api/domain/${query}`).then(data => {
+fetchAsync(`/api/domain/${query}`).then((data) => {
     let alldata = {};
 
-    let domaininfo = {
-        domain: undefined,
-        registrar: undefined,
-        registeredon: undefined,
-        expireson: undefined,
-        updatedon: undefined,
-        status: undefined,
-        nameservers: undefined,
-    }
-
-    let registrantcontact = {
-        name: undefined,
-        organization: undefined,
-        street: undefined,
-        city: undefined,
-        state: undefined,
-        postalcode: undefined,
-        country: undefined,
-        phone: undefined,
-        fax: undefined,
-        email: undefined,
-    }
-
-    let admincontact = {
-        name: undefined,
-        organization: undefined,
-        street: undefined,
-        city: undefined,
-        state: undefined,
-        postalcode: undefined,
-        country: undefined,
-        phone: undefined,
-        fax: undefined,
-        email: undefined,
-    }
-
-    let techcontact = {
-        name: undefined,
-        organization: undefined,
-        street: undefined,
-        city: undefined,
-        state: undefined,
-        postalcode: undefined,
-        country: undefined,
-        phone: undefined,
-        fax: undefined,
-        email: undefined,
-    }
-
     if (!data) {
-        console.log("Recieved no data!")
+        console.log("Recieved no data!");
         return;
     }
 
@@ -74,25 +25,36 @@ fetchAsync(`/api/domain/${query}`).then(data => {
             <h2>Domain Information</h2>
         </div>`;
 
-    if (alldata["Domain Name"]) document.getElementById("whoisMainBox").innerHTML += `
+    if (alldata["Domain Name"])
+        document.getElementById("whoisMainBox").innerHTML += `
         <div class="section">
             <span class="label">Domain:</span>
             <span class="value">${alldata["Domain Name"]}</span>
         </div>`;
 
-    if (alldata["Created Date"]) document.getElementById("whoisMainBox").innerHTML += `
+    if (alldata["Registrar"])
+        document.getElementById("whoisMainBox").innerHTML += `
+        <div class="section">
+            <span class="label">Registrar:</span>
+            <span class="value">${alldata["Registrar"]}</span>
+        </div>`;
+
+    if (alldata["Created Date"])
+        document.getElementById("whoisMainBox").innerHTML += `
         <div class="section">
             <span class="label">Registered on:</span>
             <span class="value">${formatDate(alldata["Created Date"])}</span>
         </div>`;
 
-    if (alldata["Expiry Date"]) document.getElementById("whoisMainBox").innerHTML += `
+    if (alldata["Expiry Date"])
+        document.getElementById("whoisMainBox").innerHTML += `
         <div class="section">
             <span class="label">Expires on:</span>
             <span class="value">${formatDate(alldata["Expiry Date"])}</span>
         </div>`;
 
-    if (alldata["Updated Date"]) document.getElementById("whoisMainBox").innerHTML += `
+    if (alldata["Updated Date"])
+        document.getElementById("whoisMainBox").innerHTML += `
         <div class="section">
             <span class="label">Updated on:</span>
             <span class="value">${formatDate(alldata["Updated Date"])}</span>
@@ -136,61 +98,71 @@ fetchAsync(`/api/domain/${query}`).then(data => {
                 <h2>Registrant Contact</h2>
             </div>`;
 
-        if (alldata["Registrant Name"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Name"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Name:</span>
                 <span class="value">${alldata["Registrant Name"]}</span>
             </div>`;
 
-        if (alldata["Registrant Organization"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Organization"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Organization:</span>
                 <span class="value">${alldata["Registrant Organization"]}</span>
             </div>`;
 
-        if (alldata["Registrant Street"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Street"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Street:</span>
                 <span class="value">${alldata["Registrant Street"]}</span>
             </div>`;
 
-        if (alldata["Registrant City"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant City"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">City:</span>
                 <span class="value">${alldata["Registrant City"]}</span>
             </div>`;
 
-        if (alldata["Registrant State/Province"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant State/Province"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">State/Province:</span>
                 <span class="value">${alldata["Registrant State/Province"]}</span>
             </div>`;
 
-        if (alldata["Registrant Postal Code"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Postal Code"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Postal Code:</span>
                 <span class="value">${alldata["Registrant Postal Code"]}</span>
             </div>`;
 
-        if (alldata["Registrant Country"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Country"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Country:</span>
                 <span class="value">${alldata["Registrant Country"]}</span>
             </div>`;
 
-        if (alldata["Registrant Phone"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Phone"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Phone:</span>
                 <span class="value">${alldata["Registrant Phone"]}</span>
             </div>`;
 
-        if (alldata["Registrant Fax"]) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Fax"])
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Fax:</span>
                 <span class="value">${alldata["Registrant Fax"]}</span>
             </div>`;
 
-        if (alldata["Registrant Email"] && alldata["Registrant Email"].includes("@")) document.getElementById("whoisRegistrantBox").innerHTML += `
+        if (alldata["Registrant Email"] && alldata["Registrant Email"].includes("@"))
+            document.getElementById("whoisRegistrantBox").innerHTML += `
             <div class="section">
                 <span class="label">Email:</span>
                 <span class="value">${alldata["Registrant Email"]}</span>
@@ -208,61 +180,71 @@ fetchAsync(`/api/domain/${query}`).then(data => {
                 <h2>Administrative Contact</h2>
             </div>`;
 
-        if (alldata["Admin Name"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Name"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Name:</span>
                 <span class="value">${alldata["Admin Name"]}</span>
             </div>`;
 
-        if (alldata["Admin Organization"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Organization"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Organization:</span>
                 <span class="value">${alldata["Admin Organization"]}</span>
             </div>`;
 
-        if (alldata["Admin Street"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Street"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Street:</span>
                 <span class="value">${alldata["Admin Street"]}</span>
             </div>`;
 
-        if (alldata["Admin City"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin City"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">City:</span>
                 <span class="value">${alldata["Admin City"]}</span>
             </div>`;
 
-        if (alldata["Admin State/Province"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin State/Province"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">State/Province:</span>
                 <span class="value">${alldata["Admin State/Province"]}</span>
             </div>`;
 
-        if (alldata["Admin Postal Code"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Postal Code"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Postal Code:</span>
                 <span class="value">${alldata["Admin Postal Code"]}</span>
             </div>`;
 
-        if (alldata["Admin Country"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Country"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Country:</span>
                 <span class="value">${alldata["Admin Country"]}</span>
             </div>`;
 
-        if (alldata["Admin Phone"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Phone"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Phone:</span>
                 <span class="value">${alldata["Admin Phone"]}</span>
             </div>`;
 
-        if (alldata["Admin Fax"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Fax"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Fax:</span>
                 <span class="value">${alldata["Admin Fax"]}</span>
             </div>`;
 
-        if (alldata["Admin Email"] && alldata["Admin Email"].includes("@")) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Admin Email"] && alldata["Admin Email"].includes("@"))
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Email:</span>
                 <span class="value">${alldata["Admin Email"]}</span>
@@ -280,61 +262,71 @@ fetchAsync(`/api/domain/${query}`).then(data => {
                 <h2>Technical Contact</h2>
             </div>`;
 
-        if (alldata["Tech Name"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Name"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Name:</span>
                 <span class="value">${alldata["Tech Name"]}</span>
             </div>`;
 
-        if (alldata["Tech Organization"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Organization"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Organization:</span>
                 <span class="value">${alldata["Tech Organization"]}</span>
             </div>`;
 
-        if (alldata["Tech Street"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Street"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Street:</span>
                 <span class="value">${alldata["Tech Street"]}</span>
             </div>`;
 
-        if (alldata["Tech City"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech City"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">City:</span>
                 <span class="value">${alldata["Tech City"]}</span>
             </div>`;
 
-        if (alldata["Tech State/Province"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech State/Province"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">State/Province:</span>
                 <span class="value">${alldata["Tech State/Province"]}</span>
             </div>`;
 
-        if (alldata["Tech Postal Code"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Postal Code"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Postal Code:</span>
                 <span class="value">${alldata["Tech Postal Code"]}</span>
             </div>`;
 
-        if (alldata["Tech Country"]) document.getElementById("whoisAdminBox").innerHTML += `
+        if (alldata["Tech Country"])
+            document.getElementById("whoisAdminBox").innerHTML += `
             <div class="section">
                 <span class="label">Country:</span>
                 <span class="value">${alldata["Tech Country"]}</span>
             </div>`;
 
-        if (alldata["Tech Phone"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Phone"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Phone:</span>
                 <span class="value">${alldata["Tech Phone"]}</span>
             </div>`;
 
-        if (alldata["Tech Fax"]) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Fax"])
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Fax:</span>
                 <span class="value">${alldata["Tech Fax"]}</span>
             </div>`;
 
-        if (alldata["Tech Email"] && alldata["Tech Email"].includes("@")) document.getElementById("whoisTechBox").innerHTML += `
+        if (alldata["Tech Email"] && alldata["Tech Email"].includes("@"))
+            document.getElementById("whoisTechBox").innerHTML += `
             <div class="section">
                 <span class="label">Email:</span>
                 <span class="value">${alldata["Tech Email"]}</span>
@@ -351,20 +343,6 @@ fetchAsync(`/api/domain/${query}`).then(data => {
             </div>
         </div>`;
 
-        document.getElementById("rawbox").querySelector(".content").innerHTML += alldata.__raw.replaceAll("\n", "<br>")
+        document.getElementById("rawbox").querySelector(".content").innerHTML += alldata.__raw.replaceAll("\n", "<br>");
     }
 });
-
-function formatDate(preString) {
-    let date = new Date(preString);
-
-    const month = date.getMonth() + 1;
-    let monthString = `${month}`;
-    if (month < 10) monthString = `0${month}`;
-
-    const day = date.getDate();
-    let dayString = `${day}`;
-    if (day < 10) dayString = `0${day}`;
-
-    return `${date.getFullYear()}-${monthString}-${dayString}`;
-}

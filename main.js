@@ -49,13 +49,6 @@ app.get("/tld/:query", (req, res) => {
     });
 })
 
-app.get("/ip/:query", (req, res) => {
-    renderTemplate(res, req, "info.ejs", {
-        query: req.params.query,
-        queryType: "ip"
-    });
-})
-
 app.get("/api/domain/:query", (req, res) => {
     whoiser.domain(req.params.query, { raw: true, })
         .then(data => {
@@ -63,7 +56,24 @@ app.get("/api/domain/:query", (req, res) => {
             res.status(200);
         })
         .catch(err => {
-            if (err) console.log(err);
+            if (err) {
+                res.send(err);
+                res.status(500)
+            }
+        })
+});
+
+app.get("/api/tld/:query", (req, res) => {
+    whoiser.tld(req.params.query, { raw: true, })
+        .then(data => {
+            res.send(data);
+            res.status(200);
+        })
+        .catch(err => {
+            if (err) {
+                res.send(err);
+                res.status(500)
+            }
         })
 });
 

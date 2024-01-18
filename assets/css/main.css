@@ -59,7 +59,8 @@ main {
   margin: 0;
   padding: 0 20px;
   font-size: 18px;
-  border-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   background-color: var(--blue-2);
   display: flex;
   align-items: center;

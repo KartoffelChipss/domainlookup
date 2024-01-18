@@ -15,12 +15,6 @@ function search(query) {
         return;
     }
 
-    if (isIP(query)) {
-        console.log("Searching for IP:", query)
-        window.location.href = `/ip/${query}`;
-        return;
-    }
-
     if (!unkowntype.classList.contains("_shown")) unkowntype.classList.add("_shown");
     console.log("Unknown type!")
 }
