@@ -56,6 +56,17 @@ app.get("/ip/:query", (req, res) => {
     });
 })
 
+app.get("/api/domain/:query", (req, res) => {
+    whoiser.domain(req.params.query, { raw: true, })
+        .then(data => {
+            res.send(data);
+            res.status(200);
+        })
+        .catch(err => {
+            if (err) console.log(err);
+        })
+});
+
 app.listen(process.env.PORT, null, null, () =>
     console.log(`Server is running on port ${process.env.PORT}`),
 );

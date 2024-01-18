@@ -6,10 +6,11 @@
     width: 100%;
 
     main {
-        width: 100%;
+        --padding: 25px;
+        width: calc(100% - var(--padding) * 2);
         max-width: 1200px;
 
-        padding: 50px 0;
+        padding: 25px 0;
 
         display: flex;
         flex-direction: column;
@@ -19,4 +20,78 @@
 h1 {
     margin: 0;
     font-size: 34px;
+    margin-bottom: 25px;
+}
+
+.boxlist {
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+    border-radius: 17px;
+    background-color: rgba(255, 255, 255, 0.07);
+
+    margin-bottom: 25px;
+
+    .head {
+        display: flex;
+        align-items: center;
+        padding: 15px 25px;
+        border-top-left-radius: 17px;
+        border-top-right-radius: 17px;
+        background-color: rgba(255, 255, 255, 0.07);
+
+        h2 {
+            margin: 0;
+            font-size: 27px;
+        }
+
+        svg {
+            height: 30px;
+            width: 30px;
+            margin-right: 12px;
+        }
+    }
+
+    .section {
+        padding: 20px 0;
+        margin: 0 25px;
+        display: flex;
+
+        border-bottom: var(--text-2) solid 1px;
+
+        font-size: 20px;
+
+        .label {
+            flex: 0 0 200px;
+        }
+
+        .value {
+            font-weight: 600;
+        }
+
+        .valuelist {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+}
+
+.rawbox {
+    border-radius: 17px;
+    font-family: 'Source Code Pro', monospace;
+
+    h2 {
+        font-family: Montserrat, sans-serif;
+    }
+
+    .content {
+        padding: 25px;
+    }
 }

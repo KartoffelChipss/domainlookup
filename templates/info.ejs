@@ -14,17 +14,13 @@
         <main>
             <h1><%= query%></h1>
 
-            <div class="box">
-                <div class="head">
-                    <h2>Domain Information</h2>
-                </div>
-
-                <div></div>
-            </div>
+            <div id="whoislist" class="boxlist"></div>
         </main>
     </div>
 
+    <input id="query" type="text" value="<%= query %>" style="display: none;">
+
     <script src="/assets/js/assets.js"></script>
-    <script src="/assets/js/info.js"></script>
+    <% if (queryType === "domain") {%><script src="/assets/js/domain.js"></script><%}%>
 </body>
 </html>
