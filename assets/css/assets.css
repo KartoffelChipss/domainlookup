@@ -22,6 +22,9 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
   padding: 0;
   font-family: Montserrat, sans-serif;
@@ -55,4 +58,88 @@ button {
   outline: none;
   border: none;
   font-weight: 500;
+}
+button.clear {
+  background-color: transparent;
+  color: var(--text-1);
+  padding: 0;
+  font-size: 20px;
+}
+button.clear:hover {
+  cursor: pointer;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  max-width: 1200px;
+  padding: 15px 0;
+}
+nav .head {
+  display: flex;
+  align-items: center;
+}
+nav .head img {
+  height: 40px;
+  margin-right: 12px;
+}
+nav .head h1 {
+  margin: 0;
+  font-size: 30px;
+}
+nav .links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+nav .links a {
+  font-size: 20px;
+}
+nav .searchbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+nav .searchbox input {
+  width: 250px;
+  height: 15px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 15px;
+  font-size: 18px;
+  color: var(--text-1);
+  border-radius: 3px;
+}
+@media screen and (max-width: 1000px) {
+  nav .searchbox input {
+    padding: 15px;
+  }
+}
+nav .searchbox button {
+  height: 100%;
+  margin: 0;
+  padding: 12px;
+  font-size: 18px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  background-color: var(--blue-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 0.2s ease-in-out;
+}
+nav .searchbox button svg {
+  height: 25px;
+  width: 25px;
+}
+nav .searchbox button:hover {
+  cursor: pointer;
+  filter: brightness(0.8);
 }/*# sourceMappingURL=assets.css.map */

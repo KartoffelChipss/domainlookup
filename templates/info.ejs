@@ -10,9 +10,19 @@
 <body>
     <div class="loader"></div>
 
+    <%- include("partials/nav.ejs", { mainpage: false }) %>
+
     <div class="mainWrapper">
         <main>
-            <h1><%= query%></h1>
+            <div class="titlebar">
+                <h1><%= query%></h1>
+                <div class="tabs">
+                    <button type="button" class="clear tabs--tab -active" onclick="changeSection('whois');">Whois</button>
+                    <button type="button" class="clear tabs--tab" onclick="changeSection('dns');">DNS</button>
+                    <button type="button" class="clear tabs--tab" onclick="changeSection('other');">Other</button>
+                    <span class="tabs--line"></span>
+                </div>
+            </div>
 
             <div id="whoislist" class="boxlist"></div>
         </main>
@@ -21,6 +31,8 @@
     <input id="query" type="text" value="<%= query %>" style="display: none;">
 
     <script src="/assets/js/assets.js"></script>
+    <script src="/assets/js/tabs.js"></script>
+    <script src="/assets/js/infopage.js"></script>
     <% if (queryType === "domain") {%><script src="/assets/js/domain.js"></script><%}%>
     <% if (queryType === "tld") {%><script src="/assets/js/tld.js"></script><%}%>
 </body>

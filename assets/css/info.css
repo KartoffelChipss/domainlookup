@@ -13,10 +13,42 @@
   flex-direction: column;
 }
 
-h1 {
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.titlebar h1 {
   margin: 0;
   font-size: 34px;
-  margin-bottom: 25px;
+}
+.titlebar .tabs {
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.titlebar .tabs--tab {
+  display: block;
+  margin: 0 1rem;
+  padding: 1rem 0;
+  color: var(--text-1);
+  text-decoration: none;
+  transition: 350ms;
+  cursor: pointer;
+}
+.titlebar .tabs--tab.-active {
+  color: var(--text-1);
+}
+.titlebar .tabs--line {
+  display: block;
+  height: 5px;
+  position: absolute;
+  bottom: 5px;
+  border-radius: 3px;
+  background-color: var(--blue-1);
+  transition: 350ms;
 }
 
 .boxlist {

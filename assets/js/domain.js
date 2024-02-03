@@ -87,7 +87,7 @@ fetchAsync(`/api/domain/${query}`).then((data) => {
             </div>`;
     }
 
-    let hasRegistrantInfo = alldata["Registrant Name"] || alldata["Registrant Organization"] || alldata["Registrant Street"] || alldata["Registrant City"] || alldata["Registrant State/Province"] || alldata["Registrant Postal Code"] || alldata["Registrant Country"] || alldata["Registrant Phone"] || alldata["Registrant Fax"] || alldata["Registrant Email"];
+    let hasRegistrantInfo = alldata["Registrant Name"] || alldata["Registrant Organization"] || alldata["Registrant Street"] || alldata["Registrant City"] || alldata["Registrant State/Province"] || alldata["Registrant Postal Code"] || alldata["Registrant Country"] || alldata["Registrant Phone"] || alldata["Registrant Fax"] || (alldata["Registrant Email"] && alldata["Registrant Email"].includes("@"));
 
     if (hasRegistrantInfo) {
         whoislist.innerHTML += `<div class="box" id="whoisRegistrantBox"></div>`;
@@ -169,7 +169,7 @@ fetchAsync(`/api/domain/${query}`).then((data) => {
             </div>`;
     }
 
-    let hasAdminInfo = alldata["Admin Name"] || alldata["Admin Organization"] || alldata["Admin Street"] || alldata["Admin City"] || alldata["Admin State/Province"] || alldata["Admin Postal Code"] || alldata["Admin Country"] || alldata["Admin Phone"] || alldata["Admin Fax"] || alldata["Admin Email"];
+    let hasAdminInfo = alldata["Admin Name"] || alldata["Admin Organization"] || alldata["Admin Street"] || alldata["Admin City"] || alldata["Admin State/Province"] || alldata["Admin Postal Code"] || alldata["Admin Country"] || alldata["Admin Phone"] || alldata["Admin Fax"] || (alldata["Admin Email"] && alldata["Admin Email"].includes("@"));
 
     if (hasAdminInfo) {
         whoislist.innerHTML += `<div class="box" id="whoisAdminBox"></div>`;
@@ -251,7 +251,7 @@ fetchAsync(`/api/domain/${query}`).then((data) => {
             </div>`;
     }
 
-    let hasTechInfo = alldata["Tech Name"] || alldata["Tech Organization"] || alldata["Tech Street"] || alldata["Tech City"] || alldata["Tech State/Province"] || alldata["Tech Postal Code"] || alldata["Tech Country"] || alldata["Tech Phone"] || alldata["Tech Fax"] || alldata["Tech Email"];
+    let hasTechInfo = alldata["Tech Name"] || alldata["Tech Organization"] || alldata["Tech Street"] || alldata["Tech City"] || alldata["Tech State/Province"] || alldata["Tech Postal Code"] || alldata["Tech Country"] || alldata["Tech Phone"] || alldata["Tech Fax"] || (alldata["Tech Email"] && alldata["Tech Email"].includes("@"));
 
     if (hasTechInfo) {
         whoislist.innerHTML += `<div class="box" id="whoisTechBox"></div>`;

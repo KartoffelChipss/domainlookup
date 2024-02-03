@@ -1,7 +1,7 @@
 const unkowntype = document.getElementById("unkowntype");
 
 function search(query) {
-    if (unkowntype.classList.contains("_shown")) unkowntype.classList.remove("_shown");
+    if (unkowntype && unkowntype.classList.contains("_shown")) unkowntype.classList.remove("_shown");
 
     if (isTld(query)) {
         console.log("Searching for TLD:", query)
@@ -15,7 +15,7 @@ function search(query) {
         return;
     }
 
-    if (!unkowntype.classList.contains("_shown")) unkowntype.classList.add("_shown");
+    if (unkowntype && !unkowntype.classList.contains("_shown")) unkowntype.classList.add("_shown");
     console.log("Unknown type!")
 }
 
