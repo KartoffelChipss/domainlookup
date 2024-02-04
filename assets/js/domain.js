@@ -1,9 +1,10 @@
 const query = document.getElementById("query").value;
+const domainObj = getDomainObj(query);
 const whoislist = document.getElementById("whoislist");
 const dnslist = document.getElementById("dnslist");
 
-function fetchDomainData(forceReload = false) {
-    fetchAsync(`/api/domain/${query}?forceReload=${forceReload}`).then((data) => {
+function fetchDomainData(domain, forceReload = false) {
+    fetchAsync(`/api/domain/${domain}?forceReload=${forceReload}`).then((data) => {
         let alldata = {};
     
         if (!data) {
@@ -27,11 +28,25 @@ function fetchDomainData(forceReload = false) {
                 </button>
             </div>`;
         }
+
+        if (domainObj.domain !== query) {
+            whoislist.innerHTML += `<div class="infobox">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8H12.01M12 11V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fefefe" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                <span>Showing whois data for parent domain <a href="/domain/${domainObj.domain}" class="highlight">${domainObj.domain}</a></span>
+            </div>`;
+        }
     
         for (let servername in data) {
             for (let label in data[servername]) {
                 alldata[label] = data[servername][label];
             }
+        }
+
+        if (!alldata["Domain Status"] || alldata["Domain Status"].length <= 0 || alldata["Domain Status"].includes("free")) {
+            whoislist.innerHTML += `<div class="infobox">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8H12.01M12 11V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fefefe" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                <span>It appears that this domain has not been registered yet.</span>
+            </div>`;
         }
     
         console.log("Whois:", alldata);
@@ -367,8 +382,8 @@ function fetchDomainData(forceReload = false) {
     });
 }
 
-function fetchDNS(forceReload = false) {
-    fetchAsync(`/api/dns/${query}?forceReload=${forceReload}`).then((data) => {
+function fetchDNS(host, forceReload = false) {
+    fetchAsync(`/api/dns/${host}?forceReload=${forceReload}`).then((data) => {
         if (!data) {
             console.log("Recieved no data!");
             return;
@@ -528,13 +543,15 @@ function fetchDNS(forceReload = false) {
 
         if (data["MX"].length > 0) {
             data["MX"].forEach((record) => {
-                dnsMXbox.innerHTML += `
-                <div class="section">
-                    <div class="multival">
-                        <a href="/domain/${record.exchange}" class="value">${record.exchange}</a>
-                        <span class="value"><span class="label">Priority</span> ${record.priority}</span>
-                    </div>
-                </div>`;
+                if (record.exchange && record.priority) {
+                    dnsMXbox.innerHTML += `
+                    <div class="section">
+                        <div class="multival">
+                            <a href="/domain/${record.exchange}" class="value">${record.exchange}</a>
+                            <span class="value"><span class="label">Priority</span> ${record.priority}</span>
+                        </div>
+                    </div>`;
+                }
             });
         } else {
             dnsMXbox.innerHTML += `
@@ -545,9 +562,9 @@ function fetchDNS(forceReload = false) {
     });
 }
 
-fetchDomainData(false);
+fetchDomainData(domainObj.domain, false);
 
-fetchDNS(false);
+fetchDNS(query, false);
 
 function forceRefreshData(ele, section = "whois") {
     if (section === "whois") {
@@ -561,4 +578,27 @@ function forceRefreshData(ele, section = "whois") {
     ele.addEventListener("animationend", () => {
         ele.classList.remove("anim");
     });
+}
+
+function endsWitDoubleTLD(str) {
+    for (let tld of [".co.uk", ".com.au", ".gov.uk", ".net.uk"]) {
+        if (str.endsWith(tld)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getDomainObj(str) {
+    let domainSplit = str.split(".");
+    let tld = endsWitDoubleTLD(str) ? domainSplit.slice(-2).join(".") : domainSplit.slice(-1).join(".");
+    let domainName = endsWitDoubleTLD(str) ? domainSplit[domainSplit.length - 3] : domainSplit[domainSplit.length - 2];
+    let domain = `${domainName}.${tld}`;
+
+    return {
+        domainSplit,
+        tld,
+        domainName,
+        domain,
+    };
 }
