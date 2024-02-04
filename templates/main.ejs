@@ -20,12 +20,11 @@
                 <input id="mainDomainSearch" type="text" placeholder="Domain or TLD" onkeydown="searchKeyDown(this)">
                 <button type="button" onclick="search(this.parentElement.querySelector('input').value)">Find</button>
             </div>
-            <span id="unkowntype">You need to enter a Domain, IP or Top-Level-Domain</span>
+            <span id="unkowntype">You need to enter a Domain or Top-Level-Domain</span>
         </div>
     </main>
 
     <script src="/assets/js/assets.js"></script>
-    <script src="/assets/js/main.js"></script>
     <script>
         window.addEventListener("load", () => {
             document.getElementById("mainDomainSearch").focus();

@@ -20,6 +20,7 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: dark;
 }
 
 body {
@@ -89,7 +90,7 @@ nav {
     width: 95%;
     max-width: 1200px;
 
-    padding: 15px 0;
+    padding-top: 25px;
 
     .head {
         display: flex;
@@ -103,6 +104,11 @@ nav {
         h1 {
             margin: 0;
             font-size: 30px;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: inherit;
         }
     }
 
@@ -167,6 +173,29 @@ nav {
             &:hover {
                 cursor: pointer;
                 filter: brightness(.8);
+            }
+        }
+    }
+
+    @media screen and (max-width: 800px) {
+        flex-direction: column;
+        align-items: center;
+
+        .head {
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+
+        .searchbox {
+            width: 100%;
+            height: 50px;
+
+            input {
+                flex-grow: 1;
+            }
+
+            button {
+                padding: 15px;
             }
         }
     }

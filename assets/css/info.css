@@ -17,7 +17,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+}
+@media screen and (max-width: 800px) {
+  .titlebar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 .titlebar h1 {
   margin: 0;
@@ -28,10 +33,10 @@
   flex-flow: row nowrap;
   position: relative;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 1.5rem;
 }
 .titlebar .tabs--tab {
   display: block;
-  margin: 0 1rem;
   padding: 1rem 0;
   color: var(--text-1);
   text-decoration: none;
@@ -52,13 +57,17 @@
 }
 
 .boxlist {
-  display: flex;
+  display: none;
   flex-direction: column;
+}
+.boxlist._shown {
+  display: flex;
 }
 
 .box {
   border-radius: 17px;
   background-color: rgba(255, 255, 255, 0.07);
+  overflow-x: auto;
   margin-bottom: 25px;
 }
 .box .head {
@@ -91,13 +100,44 @@
 .box .section .value {
   font-weight: 600;
 }
+.box .section a.value:hover {
+  color: inherit;
+  text-decoration: underline;
+}
 .box .section .valuelist {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
+.box .section.norecords {
+  font-weight: 500;
+  color: var(--text-2);
+}
 .box .section:last-of-type {
   border-bottom: none;
+}
+@media screen and (max-width: 800px) {
+  .box .section {
+    flex-direction: column;
+  }
+  .box .section .label {
+    flex: unset;
+    margin-bottom: 5px;
+  }
+}
+.box.dns .section .value {
+  font-weight: 500;
+}
+.box.dns .multival {
+  display: flex;
+  width: 100%;
+  gap: 15px;
+}
+.box.dns .multival .label {
+  color: var(--text-2);
+}
+.box.dns .multival .value {
+  flex-grow: 1;
 }
 
 .rawbox {
@@ -109,4 +149,37 @@
 }
 .rawbox .content {
   padding: 25px;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(180deg);
+  }
+}
+.refreshbox {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--text-2);
+}
+.refreshbox button svg {
+  --svg-color: var(--text-2);
+  height: 15px;
+  width: 15px;
+  fill: var(--svg-color);
+  stroke: var(--svg-color);
+}
+.refreshbox button svg path {
+  fill: var(--svg-color);
+}
+.refreshbox button.anim {
+  animation: rotate 0.5s linear 1;
+}
+.refreshbox button:hover {
+  cursor: pointer;
 }/*# sourceMappingURL=info.css.map */

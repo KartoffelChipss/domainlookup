@@ -16,6 +16,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
@@ -75,7 +76,7 @@ nav {
   align-items: center;
   width: 95%;
   max-width: 1200px;
-  padding: 15px 0;
+  padding-top: 25px;
 }
 nav .head {
   display: flex;
@@ -88,6 +89,10 @@ nav .head img {
 nav .head h1 {
   margin: 0;
   font-size: 30px;
+}
+nav .head:hover {
+  cursor: pointer;
+  color: inherit;
 }
 nav .links {
   display: flex;
@@ -142,4 +147,24 @@ nav .searchbox button svg {
 nav .searchbox button:hover {
   cursor: pointer;
   filter: brightness(0.8);
+}
+@media screen and (max-width: 800px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+  nav .head {
+    margin-top: 10px;
+    margin-bottom: 25px;
+  }
+  nav .searchbox {
+    width: 100%;
+    height: 50px;
+  }
+  nav .searchbox input {
+    flex-grow: 1;
+  }
+  nav .searchbox button {
+    padding: 15px;
+  }
 }/*# sourceMappingURL=assets.css.map */

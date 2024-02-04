@@ -17,14 +17,18 @@
             <div class="titlebar">
                 <h1><%= query%></h1>
                 <div class="tabs">
-                    <button type="button" class="clear tabs--tab -active" onclick="changeSection('whois');">Whois</button>
-                    <button type="button" class="clear tabs--tab" onclick="changeSection('dns');">DNS</button>
-                    <button type="button" class="clear tabs--tab" onclick="changeSection('other');">Other</button>
+                    <button type="button" class="clear tabs--tab -active" onclick="changeSection('whoislist');">Whois</button>
+                    <%if (queryType === "domain") {%>
+                        <button type="button" class="clear tabs--tab" onclick="changeSection('dnslist');">DNS</button>
+                        <button type="button" class="clear tabs--tab" onclick="changeSection('otherlist');">Other</button>
+                    <%}%>
                     <span class="tabs--line"></span>
                 </div>
             </div>
 
-            <div id="whoislist" class="boxlist"></div>
+            <div id="whoislist" class="boxlist _shown"></div>
+            <div id="dnslist" class="boxlist"></div>
+            <div id="otherlist" class="boxlist"></div>
         </main>
     </div>
 
