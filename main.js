@@ -112,7 +112,7 @@ app.get("/api/dns/:hostname", (req, res) => {
     const cachedResult = dnsCache.get(hostname);
 
     if (cachedResult && !forceReload) {
-        console.log('Result for %s found in cache', hostname);
+        // console.log('Result for %s found in cache', hostname);
         return res.send(cachedResult).status(200);
     }
 

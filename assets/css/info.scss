@@ -72,6 +72,19 @@
     &._shown {
         display: flex;
     }
+
+    .listloader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        svg, img.loading {
+            height: 100px;
+            width: 100px;
+            margin-top: 100px;
+        }
+    }
 }
 
 .box {
@@ -250,5 +263,15 @@
     a.highlight:hover {
         color: inherit;
         text-decoration: underline;
+    }
+}
+
+#otherlist {
+    button {
+        margin-bottom: 15px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

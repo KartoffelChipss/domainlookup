@@ -48,6 +48,7 @@ a {
   text-decoration: none;
   color: var(--text-1);
   font-family: Montserrat, sans-serif;
+  transition: color 0.2s ease-in-out;
 }
 a:hover {
   color: var(--text-2);
@@ -97,10 +98,11 @@ nav .head:hover {
 nav .links {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
 }
 nav .links a {
   font-size: 20px;
+  font-weight: 500;
 }
 nav .searchbox {
   position: relative;

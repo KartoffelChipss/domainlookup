@@ -58,6 +58,8 @@ a {
     color: var(--text-1);
     font-family: Montserrat, sans-serif;
 
+    transition: color .2s ease-in-out;
+
     &:hover {
         color: var(--text-2);
     }
@@ -115,10 +117,11 @@ nav {
     .links {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 25px;
 
         a {
             font-size: 20px;
+            font-weight: 500;
         }
     }
 

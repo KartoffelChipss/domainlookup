@@ -2,6 +2,8 @@ const query = document.getElementById("query").value;
 const domainObj = getDomainObj(query);
 const whoislist = document.getElementById("whoislist");
 const dnslist = document.getElementById("dnslist");
+const otherlist = document.getElementById("otherlist");
+let queryiedWhoisServers = [];
 
 function fetchDomainData(domain, forceReload = false) {
     fetchAsync(`/api/domain/${domain}?forceReload=${forceReload}`).then((data) => {
@@ -36,13 +38,24 @@ function fetchDomainData(domain, forceReload = false) {
             </div>`;
         }
     
+        otherlist.innerHTML = ``;
         for (let servername in data) {
+            // if (data[servername] && data[servername].__raw) {
+            //     const newSpan = document.createElement("span");
+            //     newSpan.style.display = "none";
+            //     newSpan.id = `${servername}_raw_content`;
+            //     newSpan.innerHTML = data[servername].__raw;
+            //     document.body.appendChild(newSpan);
+
+            //     otherlist.innerHTML += `<button type="button" onclick="downloadTxtFile(document.getElementById('${servername}_raw_content').innerHTML, '${servername}.txt')">${servername}</button>`;
+            // }
+            
             for (let label in data[servername]) {
                 alldata[label] = data[servername][label];
             }
         }
 
-        if (!alldata["Domain Status"] || alldata["Domain Status"].length <= 0 || alldata["Domain Status"].includes("free")) {
+        if (alldata["Domain Status"].includes("free") || !alldata["Name Server"] || alldata["Name Server"].length <= 0) {
             whoislist.innerHTML += `<div class="infobox">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8H12.01M12 11V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fefefe" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 <span>It appears that this domain has not been registered yet.</span>
@@ -111,7 +124,7 @@ function fetchDomainData(domain, forceReload = false) {
         if (alldata["Name Server"] && alldata["Name Server"].length > 0) {
             let nameserverslist = ``;
             for (let nameserver of alldata["Name Server"]) {
-                nameserverslist += `<span class="value">${nameserver}</span>`;
+                nameserverslist += `<a href="/domain/${nameserver}" class="value">${nameserver}</a>`;
             }
     
             document.getElementById("whoisMainBox").innerHTML += `
@@ -601,4 +614,18 @@ function getDomainObj(str) {
         domainName,
         domain,
     };
+}
+
+function downloadTxtFile(content, filename) {
+    var blob = new Blob([content], { type: 'text/plain' });
+
+    var a = document.createElement('a');
+    a.href = window.URL.createObjectURL(blob);
+    a.download = filename;
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    document.body.removeChild(a);
 }
