@@ -139,6 +139,17 @@
 .box.dns .section .value {
   font-weight: 500;
 }
+.box.dns .section .value.flag {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.box.dns .section .value.flag img {
+  height: 20px;
+  border-radius: 3px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
 .box.dns .multival {
   display: flex;
   width: 100%;

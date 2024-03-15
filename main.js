@@ -3,7 +3,8 @@ const path = require("path");
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const whoiser = require('whoiser')
+const geoip = require("geoip-lite");
+const whoiser = require('whoiser');
 const dns = require("node:dns");
 const NodeCace = require("node-cache");
 const whoisCache = new NodeCace({ stdTTL: 3600, checkperiod: 120, });
@@ -121,6 +122,12 @@ app.get("/api/dns/:hostname", (req, res) => {
             if (err) {
                 resolve([]);
             } else {
+                for (ip in ret) {
+                    ret[ip] = {
+                        ip: ret[ip],
+                        geo: geoip.lookup(ret[ip]),
+                    };
+                }
                 resolve(ret);
             }
         });
@@ -131,6 +138,12 @@ app.get("/api/dns/:hostname", (req, res) => {
             if (err) {
                 resolve([]);
             } else {
+                for (ip in ret) {
+                    ret[ip] = {
+                        ip: ret[ip],
+                        geo: geoip.lookup(ret[ip]),
+                    };
+                }
                 resolve(ret);
             }
         });

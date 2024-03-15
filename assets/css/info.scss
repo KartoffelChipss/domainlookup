@@ -164,6 +164,18 @@
     &.dns {
         .section .value {
             font-weight: 500;
+
+            &.flag {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+
+                img {
+                    height: 20px;
+                    border-radius: 3px;
+                    object-fit: contain;
+                }
+            }
         }
 
         .multival {
