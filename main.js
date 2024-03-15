@@ -4,11 +4,11 @@ require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const geoip = require("geoip-lite");
-const whoiser = require('whoiser');
+const whoiser = require("whoiser");
 const dns = require("node:dns");
 const NodeCace = require("node-cache");
-const whoisCache = new NodeCace({ stdTTL: 3600, checkperiod: 120, });
-const dnsCache = new NodeCace({ stdTTL: 600, checkperiod: 120, });
+const whoisCache = new NodeCace({ stdTTL: 3600, checkperiod: 120 });
+const dnsCache = new NodeCace({ stdTTL: 600, checkperiod: 120 });
 
 const app = express();
 
@@ -19,43 +19,59 @@ app.engine("ejs", ejs.renderFile);
 app.set("view engine", "ejs");
 
 const renderTemplate = (res, req, template, data = {}) => {
-    const baseData = { path: req.path, };
-    res.render(
-        path.resolve(`${templateDir}${path.sep}${template}`),
-        Object.assign(baseData, data),
-    );
+    const baseData = { path: req.path };
+    res.render(path.resolve(`${templateDir}${path.sep}${template}`), Object.assign(baseData, data));
 };
 
 app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
         extended: true,
-    }),
+    })
 );
+
+function getCountryByCode(code) {
+    return require("./countrycodes.json").find((country) => country.code === code);
+}
 
 app.use("/assets", express.static(path.resolve(`${dataDir}${path.sep}assets`)));
 
 app.get("/", (req, res) => {
     renderTemplate(res, req, "main.ejs", {});
-})
+});
 
 app.get("/domain/:query", (req, res) => {
     renderTemplate(res, req, "info.ejs", {
         query: req.params.query,
-        queryType: "domain"
+        queryType: "domain",
     });
-})
+});
 
 app.get("/tld/:query", (req, res) => {
     renderTemplate(res, req, "info.ejs", {
         query: req.params.query,
-        queryType: "tld"
+        queryType: "tld",
     });
-})
+});
+
+function getWhoisData(domain) {
+    return new Promise((resolve, reject) => {
+        whoiser
+            .domain(domain, { raw: true })
+            .then((data) => {
+                resolve(data);
+            })
+            .catch((err) => {
+                if (err) {
+                    reject(err);
+                }
+            });
+    });
+}
 
 app.get("/api/domain/:query", (req, res) => {
     const domain = req.params.query;
-    const forceReload = req.query.forceReload === 'true';
+    const forceReload = req.query.forceReload === "true";
     const cachedResult = whoisCache.get(domain);
 
     if (cachedResult && !forceReload) {
@@ -63,8 +79,8 @@ app.get("/api/domain/:query", (req, res) => {
         return res.send(cachedResult).status(200);
     }
 
-    whoiser.domain(domain, { raw: true, })
-        .then(data => {
+    getWhoisData(domain)
+        .then((data) => {
             res.send(data);
             res.status(200);
             whoisCache.set(domain, {
@@ -72,17 +88,55 @@ app.get("/api/domain/:query", (req, res) => {
                 cachedAt: new Date().getTime(),
             });
         })
-        .catch(err => {
+        .catch((err) => {
             if (err) {
                 res.send(err);
                 res.status(500);
             }
+        });
+});
+
+function checkAvailability(whoisResult) {
+    let whoisData = {};
+    for (let servername in whoisResult) {
+        for (let label in whoisResult[servername]) {
+            whoisData[label] = whoisResult[servername][label];
+        }
+    }
+
+    return ((whoisData["Domain Status"] && whoisData["Domain Status"].includes("free")) || !whoisData["Name Server"] || (whoisData["Name Server"] && whoisData["Name Server"].length <= 0)) && whoisData.__raw && !whoisData.__raw.includes("Too many queries from your IP");
+}
+
+app.get("/api/checkAvailability/:query", (req, res) => {
+    const domain = req.params.query;
+    const forceReload = req.query.forceReload === "true";
+    const cacheOnly = req.query.cacheOnly === "true";
+    const cachedResult = whoisCache.get(domain);
+
+    if (cachedResult && !forceReload) {
+        return res.send({ status: "OK", available: checkAvailability(cachedResult), cachedAt: cachedResult.cachedAt }).status(200);
+    }
+
+    if (cacheOnly) return res.send({ status: "ERROR", error: "No cached result found" }).status(500);
+
+    getWhoisData(domain)
+        .then((data) => {
+            whoisCache.set(domain, {
+                ...data,
+                cachedAt: new Date().getTime(),
+            });
+            res.send({ status: "OK", available: checkAvailability(data) }).status(200);
         })
+        .catch((err) => {
+            if (err) {
+                res.send({ status: "ERROR", error: err }).status(500);
+            }
+        });
 });
 
 app.get("/api/tld/:query", (req, res) => {
     const tld = req.params.query;
-    const forceReload = req.query.forceReload === 'true';
+    const forceReload = req.query.forceReload === "true";
     const cachedResult = whoisCache.get(tld);
 
     if (cachedResult && !forceReload) {
@@ -90,8 +144,9 @@ app.get("/api/tld/:query", (req, res) => {
         return res.send(cachedResult).status(200);
     }
 
-    whoiser.tld(tld, { raw: true, })
-        .then(data => {
+    whoiser
+        .tld(tld, { raw: true })
+        .then((data) => {
             res.send(data);
             res.status(200);
             whoisCache.set(tld, {
@@ -99,17 +154,17 @@ app.get("/api/tld/:query", (req, res) => {
                 cachedAt: new Date().getTime(),
             });
         })
-        .catch(err => {
+        .catch((err) => {
             if (err) {
                 res.send(err);
                 res.status(500);
             }
-        })
+        });
 });
 
 app.get("/api/dns/:hostname", (req, res) => {
     const hostname = req.params.hostname;
-    const forceReload = req.query.forceReload === 'true';
+    const forceReload = req.query.forceReload === "true";
     const cachedResult = dnsCache.get(hostname);
 
     if (cachedResult && !forceReload) {
@@ -127,6 +182,8 @@ app.get("/api/dns/:hostname", (req, res) => {
                         ip: ret[ip],
                         geo: geoip.lookup(ret[ip]),
                     };
+
+                    ret[ip].geo.countryName = getCountryByCode(ret[ip].geo.country)?.name;
                 }
                 resolve(ret);
             }
@@ -143,6 +200,8 @@ app.get("/api/dns/:hostname", (req, res) => {
                         ip: ret[ip],
                         geo: geoip.lookup(ret[ip]),
                     };
+
+                    ret[ip].geo.countryName = getCountryByCode(ret[ip].geo.country)?.name;
                 }
                 resolve(ret);
             }
@@ -217,6 +276,4 @@ app.get("/api/dns/:hostname", (req, res) => {
     });
 });
 
-app.listen(process.env.PORT, null, null, () =>
-    console.log(`Server is running on port ${process.env.PORT}`),
-);
+app.listen(process.env.PORT, null, null, () => console.log(`Server is running on port ${process.env.PORT}`));

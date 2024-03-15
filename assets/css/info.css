@@ -32,7 +32,6 @@
   display: flex;
   flex-flow: row nowrap;
   position: relative;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   gap: 1.5rem;
 }
 .titlebar .tabs--tab {
@@ -124,6 +123,10 @@
   font-weight: 500;
   color: var(--text-2);
 }
+.box .section.button-spacebetween {
+  justify-content: space-between;
+  align-items: center;
+}
 .box .section:last-of-type {
   border-bottom: none;
 }
@@ -205,6 +208,9 @@
 .refreshbox button:hover {
   cursor: pointer;
 }
+.refreshbox.none {
+  height: 24px;
+}
 
 .infobox {
   display: flex;
@@ -230,9 +236,54 @@
   text-decoration: underline;
 }
 
-#otherlist button {
-  margin-bottom: 15px;
+#otherlist .refreshbox {
+  visibility: hidden;
 }
-#otherlist button:hover {
+#otherlist .similardomains a {
+  font-weight: 600;
+  font-size: 20px;
+}
+#otherlist .similardomains button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 7px 15px;
+  min-width: 200px;
+  border: var(--blue-1) solid 2px;
+  border-radius: 7px;
+  background-color: rgba(67, 176, 241, 0.2);
+  font-weight: 500;
+  font-size: 18px;
+}
+#otherlist .similardomains button svg, #otherlist .similardomains button img.loading {
+  height: 25px;
+  width: 25px;
+}
+#otherlist .similardomains button img.loading {
+  scale: 1.4;
+}
+#otherlist .similardomains button:hover {
   cursor: pointer;
+}
+#otherlist .similardomains button.available {
+  border-color: var(--success);
+  background-color: rgba(67, 241, 176, 0.2);
+  border: var(--success) solid 2px;
+}
+#otherlist .similardomains button.unavailable {
+  border-color: var(--danger);
+  background-color: rgba(241, 67, 67, 0.2);
+  border: var(--danger) solid 2px;
+}
+@media screen and (max-width: 800px) {
+  #otherlist .similardomains {
+    flex-direction: row;
+  }
+  #otherlist .similardomains button {
+    min-width: 0px;
+  }
+  #otherlist .similardomains button span {
+    display: none;
+  }
 }/*# sourceMappingURL=info.css.map */

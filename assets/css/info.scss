@@ -36,7 +36,7 @@
         display: flex;
         flex-flow: row nowrap;
         position: relative;
-        border-bottom: 1px solid rgba(black, 0.1);
+        // border-bottom: 1px solid rgba(black, 0.1);
         gap: 1.5rem;
 
         &--tab {
@@ -147,6 +147,11 @@
             color: var(--text-2);
         }
 
+        &.button-spacebetween {
+            justify-content: space-between;
+            align-items: center;
+        }
+
         &:last-of-type {
             border-bottom: none;
         }
@@ -246,6 +251,10 @@
             cursor: pointer;
         }
     }
+
+    &.none {
+        height: 24px;
+    }
 }
 
 .infobox {
@@ -279,11 +288,68 @@
 }
 
 #otherlist {
-    button {
-        margin-bottom: 15px;
+    .refreshbox {
+        visibility: hidden;
+    }
 
-        &:hover {
-            cursor: pointer;
+    .similardomains {
+        a {
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 7px 15px;
+    
+            min-width: 200px;
+    
+            border: var(--blue-1) solid 2px;
+            border-radius: 7px;
+            background-color: rgb(67, 176, 241, 0.2);
+            
+            font-weight: 500;
+            font-size: 18px;
+    
+            svg, img.loading {
+                height: 25px;
+                width: 25px;
+            }
+
+            img.loading {
+                scale: 1.4;
+            }
+    
+            &:hover {
+                cursor: pointer;
+            }
+    
+            &.available {
+                border-color: var(--success);
+                background-color: rgb(67, 241, 176, 0.2);
+                border: var(--success) solid 2px;
+            }
+    
+            &.unavailable {
+                border-color: var(--danger);
+                background-color: rgb(241, 67, 67, 0.2);
+                border: var(--danger) solid 2px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            flex-direction: row;
+
+            button {
+                min-width: 0px;
+
+                span {
+                    display: none;
+                }
+            }
         }
     }
 }
