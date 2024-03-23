@@ -226,6 +226,7 @@
     align-items: center;
     gap: 7px;
     margin-bottom: 15px;
+    height: 24px;
 
     font-size: 16px;
     color: var(--text-2);
@@ -285,12 +286,18 @@
         color: inherit;
         text-decoration: underline;
     }
+
+    &.cloudflare {
+        border-color: #f38020;
+        background-color: rgb(243, 128, 32, 0.2);
+
+        .price {
+            margin-left: auto;
+        }
+    }
 }
 
 #otherlist {
-    .refreshbox {
-        visibility: hidden;
-    }
 
     .similardomains {
         a {

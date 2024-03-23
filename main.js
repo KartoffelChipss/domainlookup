@@ -7,6 +7,7 @@ const geoip = require("geoip-lite");
 const whoiser = require("whoiser");
 const dns = require("node:dns");
 const NodeCace = require("node-cache");
+const cfpricing = require("./tldpricing/cloudflare.json");
 const whoisCache = new NodeCace({ stdTTL: 3600, checkperiod: 120 });
 const dnsCache = new NodeCace({ stdTTL: 600, checkperiod: 120 });
 
@@ -54,11 +55,19 @@ app.get("/tld/:query", (req, res) => {
     });
 });
 
+function formatPrice(price) {
+    var formattedPrice = parseFloat(price).toFixed(2);
+    return "$" + formattedPrice;
+}
+
 function getWhoisData(domain) {
+    const domainSplit = domain.split(".");
     return new Promise((resolve, reject) => {
         whoiser
             .domain(domain, { raw: true })
             .then((data) => {
+                let cfPrice = cfpricing.find((tld) => tld.tld_name === domainSplit[domainSplit.length - 1])?.registration_price_usd;
+                if (cfPrice) data.cfPrice = formatPrice(cfPrice);
                 resolve(data);
             })
             .catch((err) => {
@@ -140,7 +149,6 @@ app.get("/api/tld/:query", (req, res) => {
     const cachedResult = whoisCache.get(tld);
 
     if (cachedResult && !forceReload) {
-        //console.log('Result for %s found in cache', tld);
         return res.send(cachedResult).status(200);
     }
 

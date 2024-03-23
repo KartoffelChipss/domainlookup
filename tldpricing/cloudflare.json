@@ -1,0 +1,1737 @@
+[
+    {
+        "tld_name": "academy",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "accountant",
+        "renewal_price_usd": "19.98",
+        "registration_price_usd": "19.98"
+    },
+    {
+        "tld_name": "accountants",
+        "renewal_price_usd": "75",
+        "registration_price_usd": "75"
+    },
+    {
+        "tld_name": "actor",
+        "renewal_price_usd": "29",
+        "registration_price_usd": "29"
+    },
+    {
+        "tld_name": "agency",
+        "renewal_price_usd": "18",
+        "registration_price_usd": "18"
+    },
+    {
+        "tld_name": "apartments",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "app",
+        "renewal_price_usd": "12",
+        "registration_price_usd": "12"
+    },
+    {
+        "tld_name": "associates",
+        "renewal_price_usd": "26",
+        "registration_price_usd": "26"
+    },
+    {
+        "tld_name": "attorney",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "auction",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "band",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "bar",
+        "renewal_price_usd": "50",
+        "registration_price_usd": "50"
+    },
+    {
+        "tld_name": "bargains",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "beer",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "bet",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "bid",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "bike",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "bingo",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "biz",
+        "renewal_price_usd": "13.5",
+        "registration_price_usd": "13.5"
+    },
+    {
+        "tld_name": "black",
+        "renewal_price_usd": "42.5",
+        "registration_price_usd": "42.5"
+    },
+    {
+        "tld_name": "blog",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "blue",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "boo",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "boston",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "boutique",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "broker",
+        "renewal_price_usd": "22",
+        "registration_price_usd": "22"
+    },
+    {
+        "tld_name": "builders",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "business",
+        "renewal_price_usd": "9",
+        "registration_price_usd": "9"
+    },
+    {
+        "tld_name": "cab",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "cafe",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "camera",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "camp",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "capital",
+        "renewal_price_usd": "46",
+        "registration_price_usd": "46"
+    },
+    {
+        "tld_name": "cards",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "care",
+        "renewal_price_usd": "27",
+        "registration_price_usd": "27"
+    },
+    {
+        "tld_name": "careers",
+        "renewal_price_usd": "46",
+        "registration_price_usd": "46"
+    },
+    {
+        "tld_name": "casa",
+        "renewal_price_usd": "7.5",
+        "registration_price_usd": "7.5"
+    },
+    {
+        "tld_name": "cash",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "casino",
+        "renewal_price_usd": "110",
+        "registration_price_usd": "110"
+    },
+    {
+        "tld_name": "catering",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "cc",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "center",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "ceo",
+        "renewal_price_usd": "70",
+        "registration_price_usd": "70"
+    },
+    {
+        "tld_name": "chat",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "cheap",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "church",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "city",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "claims",
+        "renewal_price_usd": "46",
+        "registration_price_usd": "46"
+    },
+    {
+        "tld_name": "cleaning",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "clinic",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "clothing",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "cloud",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "club",
+        "renewal_price_usd": "9.95",
+        "registration_price_usd": "9.95"
+    },
+    {
+        "tld_name": "co",
+        "renewal_price_usd": "22",
+        "registration_price_usd": "22"
+    },
+    {
+        "tld_name": "coach",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "codes",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "coffee",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "college",
+        "renewal_price_usd": "45",
+        "registration_price_usd": "45"
+    },
+    {
+        "tld_name": "com",
+        "renewal_price_usd": "9.59",
+        "registration_price_usd": "9.59"
+    },
+    {
+        "tld_name": "com",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "community",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "company",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "compare",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "computer",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "condos",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "construction",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "consulting",
+        "renewal_price_usd": "30",
+        "registration_price_usd": "30"
+    },
+    {
+        "tld_name": "contact",
+        "renewal_price_usd": "9",
+        "registration_price_usd": "9"
+    },
+    {
+        "tld_name": "contractors",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "cooking",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "cool",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "co",
+        "renewal_price_usd": "4.71",
+        "registration_price_usd": "4.71"
+    },
+    {
+        "tld_name": "coupons",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "credit",
+        "renewal_price_usd": "75",
+        "registration_price_usd": "75"
+    },
+    {
+        "tld_name": "creditcard",
+        "renewal_price_usd": "125",
+        "registration_price_usd": "125"
+    },
+    {
+        "tld_name": "cricket",
+        "renewal_price_usd": "19.98",
+        "registration_price_usd": "19.98"
+    },
+    {
+        "tld_name": "cruises",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "dad",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "dance",
+        "renewal_price_usd": "18",
+        "registration_price_usd": "18"
+    },
+    {
+        "tld_name": "date",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "dating",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "day",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "deals",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "degree",
+        "renewal_price_usd": "32",
+        "registration_price_usd": "32"
+    },
+    {
+        "tld_name": "delivery",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "democrat",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "dental",
+        "renewal_price_usd": "45",
+        "registration_price_usd": "45"
+    },
+    {
+        "tld_name": "dentist",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "design",
+        "renewal_price_usd": "35",
+        "registration_price_usd": "35"
+    },
+    {
+        "tld_name": "dev",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "diamonds",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "digital",
+        "renewal_price_usd": "27",
+        "registration_price_usd": "27"
+    },
+    {
+        "tld_name": "direct",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "directory",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "discount",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "doctor",
+        "renewal_price_usd": "80",
+        "registration_price_usd": "80"
+    },
+    {
+        "tld_name": "dog",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "domains",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "download",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "education",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "email",
+        "renewal_price_usd": "19",
+        "registration_price_usd": "19"
+    },
+    {
+        "tld_name": "energy",
+        "renewal_price_usd": "75",
+        "registration_price_usd": "75"
+    },
+    {
+        "tld_name": "engineer",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "engineering",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "enterprises",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "equipment",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "esq",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "estate",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "events",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "exchange",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "expert",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "express",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "fail",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "faith",
+        "renewal_price_usd": "9.98",
+        "registration_price_usd": "9.98"
+    },
+    {
+        "tld_name": "family",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "fans",
+        "renewal_price_usd": "50",
+        "registration_price_usd": "50"
+    },
+    {
+        "tld_name": "farm",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "fashion",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "finance",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "financial",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "fish",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "fishing",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "fit",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "fitness",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "flights",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "florist",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "fm",
+        "renewal_price_usd": "85",
+        "registration_price_usd": "85"
+    },
+    {
+        "tld_name": "foo",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "football",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "forex",
+        "renewal_price_usd": "30",
+        "registration_price_usd": "30"
+    },
+    {
+        "tld_name": "forsale",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "foundation",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "fun",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "fund",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "furniture",
+        "renewal_price_usd": "80",
+        "registration_price_usd": "80"
+    },
+    {
+        "tld_name": "futbol",
+        "renewal_price_usd": "9",
+        "registration_price_usd": "9"
+    },
+    {
+        "tld_name": "fyi",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "gallery",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "games",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "garden",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "gifts",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "gives",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "glass",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "gmbh",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "gold",
+        "renewal_price_usd": "75",
+        "registration_price_usd": "75"
+    },
+    {
+        "tld_name": "golf",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "graphics",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "gratis",
+        "renewal_price_usd": "14",
+        "registration_price_usd": "14"
+    },
+    {
+        "tld_name": "green",
+        "renewal_price_usd": "52.5",
+        "registration_price_usd": "52.5"
+    },
+    {
+        "tld_name": "gripe",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "group",
+        "renewal_price_usd": "14",
+        "registration_price_usd": "14"
+    },
+    {
+        "tld_name": "guide",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "guru",
+        "renewal_price_usd": "27",
+        "registration_price_usd": "27"
+    },
+    {
+        "tld_name": "haus",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "health",
+        "renewal_price_usd": "50",
+        "registration_price_usd": "50"
+    },
+    {
+        "tld_name": "healthcare",
+        "renewal_price_usd": "46",
+        "registration_price_usd": "46"
+    },
+    {
+        "tld_name": "hockey",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "holdings",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "holiday",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "horse",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "hospital",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "host",
+        "renewal_price_usd": "65",
+        "registration_price_usd": "65"
+    },
+    {
+        "tld_name": "house",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "how",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "immo",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "immobilien",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "industries",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "info",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "ink",
+        "renewal_price_usd": "19",
+        "registration_price_usd": "19"
+    },
+    {
+        "tld_name": "institute",
+        "renewal_price_usd": "18",
+        "registration_price_usd": "18"
+    },
+    {
+        "tld_name": "insure",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "international",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "investments",
+        "renewal_price_usd": "80",
+        "registration_price_usd": "80"
+    },
+    {
+        "tld_name": "io",
+        "renewal_price_usd": "36",
+        "registration_price_usd": "36"
+    },
+    {
+        "tld_name": "irish",
+        "renewal_price_usd": "14",
+        "registration_price_usd": "14"
+    },
+    {
+        "tld_name": "jetzt",
+        "renewal_price_usd": "14",
+        "registration_price_usd": "14"
+    },
+    {
+        "tld_name": "jewelry",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "kaufen",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "kim",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "kitchen",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "land",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "lawyer",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "lease",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "legal",
+        "renewal_price_usd": "45",
+        "registration_price_usd": "45"
+    },
+    {
+        "tld_name": "lgbt",
+        "renewal_price_usd": "43",
+        "registration_price_usd": "43"
+    },
+    {
+        "tld_name": "life",
+        "renewal_price_usd": "24",
+        "registration_price_usd": "24"
+    },
+    {
+        "tld_name": "lighting",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "limited",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "limo",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "live",
+        "renewal_price_usd": "21",
+        "registration_price_usd": "21"
+    },
+    {
+        "tld_name": "loan",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "loans",
+        "renewal_price_usd": "75",
+        "registration_price_usd": "75"
+    },
+    {
+        "tld_name": "love",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "ltd",
+        "renewal_price_usd": "19",
+        "registration_price_usd": "19"
+    },
+    {
+        "tld_name": "luxe",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "maison",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "management",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "market",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "marketing",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "markets",
+        "renewal_price_usd": "11",
+        "registration_price_usd": "11"
+    },
+    {
+        "tld_name": "mba",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "media",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "memorial",
+        "renewal_price_usd": "35.5",
+        "registration_price_usd": "35.5"
+    },
+    {
+        "tld_name": "men",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "me",
+        "renewal_price_usd": "4.71",
+        "registration_price_usd": "4.71"
+    },
+    {
+        "tld_name": "miami",
+        "renewal_price_usd": "12",
+        "registration_price_usd": "12"
+    },
+    {
+        "tld_name": "mobi",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "moda",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "money",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "mortgage",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "mov",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "movie",
+        "renewal_price_usd": "215",
+        "registration_price_usd": "215"
+    },
+    {
+        "tld_name": "net",
+        "renewal_price_usd": "9.92",
+        "registration_price_usd": "9.92"
+    },
+    {
+        "tld_name": "net",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "network",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "new",
+        "renewal_price_usd": "400",
+        "registration_price_usd": "400"
+    },
+    {
+        "tld_name": "news",
+        "renewal_price_usd": "21",
+        "registration_price_usd": "21"
+    },
+    {
+        "tld_name": "nexus",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "ninja",
+        "renewal_price_usd": "21",
+        "registration_price_usd": "21"
+    },
+    {
+        "tld_name": "nom",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "observer",
+        "renewal_price_usd": "9",
+        "registration_price_usd": "9"
+    },
+    {
+        "tld_name": "online",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "org",
+        "renewal_price_usd": "9.93",
+        "registration_price_usd": "9.93"
+    },
+    {
+        "tld_name": "org",
+        "renewal_price_usd": "4.71",
+        "registration_price_usd": "4.71"
+    },
+    {
+        "tld_name": "page",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "partners",
+        "renewal_price_usd": "46",
+        "registration_price_usd": "46"
+    },
+    {
+        "tld_name": "parts",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "party",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "pet",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "phd",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "photography",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "photos",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "pictures",
+        "renewal_price_usd": "9",
+        "registration_price_usd": "9"
+    },
+    {
+        "tld_name": "pink",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "pizza",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "place",
+        "renewal_price_usd": "14",
+        "registration_price_usd": "14"
+    },
+    {
+        "tld_name": "plumbing",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "plus",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "press",
+        "renewal_price_usd": "49",
+        "registration_price_usd": "49"
+    },
+    {
+        "tld_name": "pro",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "productions",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "prof",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "promo",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "properties",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "pub",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "racing",
+        "renewal_price_usd": "9.98",
+        "registration_price_usd": "9.98"
+    },
+    {
+        "tld_name": "radio",
+        "renewal_price_usd": "12",
+        "registration_price_usd": "12"
+    },
+    {
+        "tld_name": "realty",
+        "renewal_price_usd": "280",
+        "registration_price_usd": "280"
+    },
+    {
+        "tld_name": "recipes",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "red",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "rehab",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "reise",
+        "renewal_price_usd": "66",
+        "registration_price_usd": "66"
+    },
+    {
+        "tld_name": "reisen",
+        "renewal_price_usd": "14",
+        "registration_price_usd": "14"
+    },
+    {
+        "tld_name": "rent",
+        "renewal_price_usd": "45",
+        "registration_price_usd": "45"
+    },
+    {
+        "tld_name": "rentals",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "repair",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "report",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "republican",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "rest",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "restaurant",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "review",
+        "renewal_price_usd": "9.98",
+        "registration_price_usd": "9.98"
+    },
+    {
+        "tld_name": "reviews",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "rip",
+        "renewal_price_usd": "15",
+        "registration_price_usd": "15"
+    },
+    {
+        "tld_name": "rocks",
+        "renewal_price_usd": "13",
+        "registration_price_usd": "13"
+    },
+    {
+        "tld_name": "rodeo",
+        "renewal_price_usd": "5",
+        "registration_price_usd": "5"
+    },
+    {
+        "tld_name": "rsvp",
+        "renewal_price_usd": "8",
+        "registration_price_usd": "8"
+    },
+    {
+        "tld_name": "run",
+        "renewal_price_usd": "17",
+        "registration_price_usd": "17"
+    },
+    {
+        "tld_name": "sale",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "salon",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "sarl",
+        "renewal_price_usd": "21.5",
+        "registration_price_usd": "21.5"
+    },
+    {
+        "tld_name": "school",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "schule",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "science",
+        "renewal_price_usd": "9.98",
+        "registration_price_usd": "9.98"
+    },
+    {
+        "tld_name": "security",
+        "renewal_price_usd": "2000",
+        "registration_price_usd": "2000"
+    },
+    {
+        "tld_name": "select",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "services",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "shoes",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "shopping",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "show",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "singles",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "site",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "soccer",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "social",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "software",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "solar",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "solutions",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "soy",
+        "renewal_price_usd": "18",
+        "registration_price_usd": "18"
+    },
+    {
+        "tld_name": "space",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "storage",
+        "renewal_price_usd": "500",
+        "registration_price_usd": "500"
+    },
+    {
+        "tld_name": "store",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "stream",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "studio",
+        "renewal_price_usd": "24",
+        "registration_price_usd": "24"
+    },
+    {
+        "tld_name": "style",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "supplies",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "supply",
+        "renewal_price_usd": "16",
+        "registration_price_usd": "16"
+    },
+    {
+        "tld_name": "support",
+        "renewal_price_usd": "18",
+        "registration_price_usd": "18"
+    },
+    {
+        "tld_name": "surf",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "surgery",
+        "renewal_price_usd": "35.5",
+        "registration_price_usd": "35.5"
+    },
+    {
+        "tld_name": "systems",
+        "renewal_price_usd": "21",
+        "registration_price_usd": "21"
+    },
+    {
+        "tld_name": "tax",
+        "renewal_price_usd": "46",
+        "registration_price_usd": "46"
+    },
+    {
+        "tld_name": "taxi",
+        "renewal_price_usd": "42",
+        "registration_price_usd": "42"
+    },
+    {
+        "tld_name": "team",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "tech",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "technology",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "tennis",
+        "renewal_price_usd": "43",
+        "registration_price_usd": "43"
+    },
+    {
+        "tld_name": "theater",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "theatre",
+        "renewal_price_usd": "500",
+        "registration_price_usd": "500"
+    },
+    {
+        "tld_name": "tienda",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "tips",
+        "renewal_price_usd": "21",
+        "registration_price_usd": "21"
+    },
+    {
+        "tld_name": "tires",
+        "renewal_price_usd": "70",
+        "registration_price_usd": "70"
+    },
+    {
+        "tld_name": "today",
+        "renewal_price_usd": "18",
+        "registration_price_usd": "18"
+    },
+    {
+        "tld_name": "tools",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "tours",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "town",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "toys",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "trade",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "trading",
+        "renewal_price_usd": "13",
+        "registration_price_usd": "13"
+    },
+    {
+        "tld_name": "training",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "tv",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "uk",
+        "renewal_price_usd": "4.71",
+        "registration_price_usd": "4.71"
+    },
+    {
+        "tld_name": "university",
+        "renewal_price_usd": "40",
+        "registration_price_usd": "40"
+    },
+    {
+        "tld_name": "us",
+        "renewal_price_usd": "6.5",
+        "registration_price_usd": "6.5"
+    },
+    {
+        "tld_name": "vacations",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "ventures",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "vet",
+        "renewal_price_usd": "27",
+        "registration_price_usd": "27"
+    },
+    {
+        "tld_name": "viajes",
+        "renewal_price_usd": "35",
+        "registration_price_usd": "35"
+    },
+    {
+        "tld_name": "video",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "villas",
+        "renewal_price_usd": "35.5",
+        "registration_price_usd": "35.5"
+    },
+    {
+        "tld_name": "vin",
+        "renewal_price_usd": "41",
+        "registration_price_usd": "41"
+    },
+    {
+        "tld_name": "vip",
+        "renewal_price_usd": "11",
+        "registration_price_usd": "11"
+    },
+    {
+        "tld_name": "vision",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "vodka",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "voyage",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "watch",
+        "renewal_price_usd": "28",
+        "registration_price_usd": "28"
+    },
+    {
+        "tld_name": "webcam",
+        "renewal_price_usd": "9.98",
+        "registration_price_usd": "9.98"
+    },
+    {
+        "tld_name": "website",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "wedding",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "wiki",
+        "renewal_price_usd": "19",
+        "registration_price_usd": "19"
+    },
+    {
+        "tld_name": "win",
+        "renewal_price_usd": "4.98",
+        "registration_price_usd": "3.98"
+    },
+    {
+        "tld_name": "wine",
+        "renewal_price_usd": "38",
+        "registration_price_usd": "38"
+    },
+    {
+        "tld_name": "work",
+        "renewal_price_usd": "6",
+        "registration_price_usd": "6"
+    },
+    {
+        "tld_name": "works",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "world",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    },
+    {
+        "tld_name": "wtf",
+        "renewal_price_usd": "23",
+        "registration_price_usd": "23"
+    },
+    {
+        "tld_name": "xyz",
+        "renewal_price_usd": "10",
+        "registration_price_usd": "10"
+    },
+    {
+        "tld_name": "yoga",
+        "renewal_price_usd": "20",
+        "registration_price_usd": "20"
+    },
+    {
+        "tld_name": "zone",
+        "renewal_price_usd": "25",
+        "registration_price_usd": "25"
+    }
+]
