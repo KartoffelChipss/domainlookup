@@ -3,6 +3,10 @@ const path = require("path");
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cookieParser = require('cookie-parser');
+const crypto = require("crypto");
+const bcrypt = require("bcrypt");
 const geoip = require("geoip-lite");
 const whoiser = require("whoiser");
 const dns = require("node:dns");
@@ -10,6 +14,9 @@ const NodeCace = require("node-cache");
 const cfpricing = require("./tldpricing/cloudflare.json");
 const whoisCache = new NodeCace({ stdTTL: 3600, checkperiod: 120 });
 const dnsCache = new NodeCace({ stdTTL: 600, checkperiod: 120 });
+const userModal = require("./modals/users");
+
+mongoose.connect(process.env.MONGO_URI, {}).then(() => console.log(console.log("Connected to database")));
 
 const app = express();
 
@@ -31,18 +38,95 @@ app.use(
     })
 );
 
+app.use(cookieParser());
+
 function getCountryByCode(code) {
     return require("./countrycodes.json").find((country) => country.code === code);
 }
 
+const generateAuthToken = () => {
+    return crypto.randomBytes(30).toString('hex');
+}
+
+const requireAuth = (req, res, next) => {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect("/login?redirect=" + req.originalUrl);
+    }
+};
+
+let authTokens = {};
+
+app.use(async (req, res, next) => {
+    const authToken = req.cookies['AuthToken'];
+
+    req.user = authTokens[authToken];
+
+    next();
+});
+
 app.use("/assets", express.static(path.resolve(`${dataDir}${path.sep}assets`)));
 
 app.get("/", (req, res) => {
-    renderTemplate(res, req, "main.ejs", {});
+    renderTemplate(res, req, "main.ejs", {
+        user: req.user,
+    });
+});
+
+app.get("/logout", (req, res) => {
+    res.clearCookie("AuthToken");
+
+    if (req.query.redirect) {
+        res.redirect(req.query.redirect)
+    } else {
+        res.redirect("/");
+    }
+    res.end();
+});
+
+app.get("/login", (req, res) => {
+    renderTemplate(res, req, "login.ejs", {
+        loginMessage: 'none',
+    });
+});
+
+app.post("/login", async (req, res) => {
+    const email = req.body.username;
+    const password = req.body.password;
+
+    const user = await userModal.findOne({ email: email }) || await userModal.findOne({ userName: email }) || undefined;
+
+    if (!user) {
+        renderTemplate(res, req, "login.ejs", {
+            user: req.user,
+            alertMessage: 'Ungültige E-Mail-Adresse oder Benutzername!',
+        });
+        return;
+    }
+
+    var passwordIsValid = bcrypt.compareSync(password, user.password);
+
+    if (!passwordIsValid) {
+        renderTemplate(res, req, "login.ejs", {
+            user: req.user,
+            alertMessage: 'Ungültiges Passwort!',
+        });
+        return;
+    }
+
+    const authToken = generateAuthToken();
+    authTokens[authToken] = user;
+
+    res.cookie("AuthToken", authToken, { maxAge: 31536000, secure: true, httpOnly: true });
+
+    if (req.query.redirect) res.redirect(req.query.redirect);
+    else res.redirect("/");
 });
 
 app.get("/domain/:query", (req, res) => {
     renderTemplate(res, req, "info.ejs", {
+        user: req.user,
         query: req.params.query,
         queryType: "domain",
     });
@@ -50,6 +134,7 @@ app.get("/domain/:query", (req, res) => {
 
 app.get("/tld/:query", (req, res) => {
     renderTemplate(res, req, "info.ejs", {
+        user: req.user,
         query: req.params.query,
         queryType: "tld",
     });

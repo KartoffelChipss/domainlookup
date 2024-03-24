@@ -12,8 +12,14 @@
 
     <% if (mainpage) {%>
         <div class="links">
-            <a href="/info">Info</a>
-            <a href="/about">About</a>
+            <%if (user) {%>
+                <div class="userbox">
+                    <h3><%= user.userName %></h3>
+                    <img src="<%= user.avatar %>">
+                </div>
+            <%} else {%>
+                <a href="/login">Login</a>
+            <%}%>
         </div>
     <%} else {%>
         <div class="searchbox">
