@@ -16,7 +16,7 @@ const whoisCache = new NodeCace({ stdTTL: 3600, checkperiod: 120 });
 const dnsCache = new NodeCace({ stdTTL: 600, checkperiod: 120 });
 const userModal = require("./modals/users");
 
-mongoose.connect(process.env.MONGO_URI, {}).then(() => console.log(console.log("Connected to database")));
+mongoose.connect(process.env.MONGO_URI, {}).then(() => console.log("Connected to database"));
 
 const app = express();
 
