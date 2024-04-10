@@ -68,7 +68,7 @@ app.use(async (req, res, next) => {
 
 app.use("/assets", express.static(path.resolve(`${dataDir}${path.sep}assets`)));
 
-app.get("/", (req, res) => {
+app.get("/", requireAuth, (req, res) => {
     renderTemplate(res, req, "main.ejs", {
         user: req.user,
     });
@@ -124,7 +124,7 @@ app.post("/login", async (req, res) => {
     else res.redirect("/");
 });
 
-app.get("/domain/:query", (req, res) => {
+app.get("/domain/:query", requireAuth, (req, res) => {
     renderTemplate(res, req, "info.ejs", {
         user: req.user,
         query: req.params.query,
@@ -132,7 +132,7 @@ app.get("/domain/:query", (req, res) => {
     });
 });
 
-app.get("/tld/:query", (req, res) => {
+app.get("/tld/:query", requireAuth, (req, res) => {
     renderTemplate(res, req, "info.ejs", {
         user: req.user,
         query: req.params.query,
@@ -163,7 +163,7 @@ function getWhoisData(domain) {
     });
 }
 
-app.get("/api/domain/:query", (req, res) => {
+app.get("/api/domain/:query", requireAuth, (req, res) => {
     const domain = req.params.query;
     const forceReload = req.query.forceReload === "true";
     const cachedResult = whoisCache.get(domain);
@@ -201,7 +201,7 @@ function checkAvailability(whoisResult) {
     return ((whoisData["Domain Status"] && whoisData["Domain Status"].includes("free")) || !whoisData["Name Server"] || (whoisData["Name Server"] && whoisData["Name Server"].length <= 0)) && whoisData.__raw && !whoisData.__raw.includes("Too many queries from your IP");
 }
 
-app.get("/api/checkAvailability/:query", (req, res) => {
+app.get("/api/checkAvailability/:query", requireAuth, (req, res) => {
     const domain = req.params.query;
     const forceReload = req.query.forceReload === "true";
     const cacheOnly = req.query.cacheOnly === "true";
@@ -228,7 +228,7 @@ app.get("/api/checkAvailability/:query", (req, res) => {
         });
 });
 
-app.get("/api/tld/:query", (req, res) => {
+app.get("/api/tld/:query", requireAuth, (req, res) => {
     const tld = req.params.query;
     const forceReload = req.query.forceReload === "true";
     const cachedResult = whoisCache.get(tld);
@@ -255,7 +255,7 @@ app.get("/api/tld/:query", (req, res) => {
         });
 });
 
-app.get("/api/dns/:hostname", (req, res) => {
+app.get("/api/dns/:hostname", requireAuth, (req, res) => {
     const hostname = req.params.hostname;
     const forceReload = req.query.forceReload === "true";
     const cachedResult = dnsCache.get(hostname);
