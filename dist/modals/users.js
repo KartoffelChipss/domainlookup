@@ -1,6 +1,8 @@
-const { Schema, model } = require("mongoose");
-
-const userSchema = new Schema({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = require("mongoose");
+// Define the Mongoose schema using TypeScript
+const userSchema = new mongoose_1.Schema({
     userId: {
         type: String,
     },
@@ -27,8 +29,18 @@ const userSchema = new Schema({
         default: "private",
     },
     roles: {
-        type: Array,
-        default: [{ name: "Nutzer", id: "user", weight: 10, icon: "/img/roleicons/user.png", color: "808080" }],
+        type: [
+            {
+                name: { type: String, required: true },
+                id: { type: String, required: true },
+                weight: { type: Number, required: true },
+                icon: { type: String, required: true },
+                color: { type: String, required: true },
+            }
+        ],
+        default: [
+            { name: "Nutzer", id: "user", weight: 10, icon: "/img/roleicons/user.png", color: "808080" }
+        ],
     },
     warnings: {
         type: Number,
@@ -50,9 +62,9 @@ const userSchema = new Schema({
         type: Boolean,
         default: true,
     }
-},
-{
+}, {
     timestamps: true,
 });
-
-module.exports = model("users", userSchema);
+// Create and export the Mongoose model
+const UserModel = (0, mongoose_1.model)('User', userSchema);
+exports.default = UserModel;

@@ -287,12 +287,28 @@
         text-decoration: underline;
     }
 
+    .right {
+        margin-left: auto;
+    }
+
     &.cloudflare {
         border-color: #f38020;
         background-color: rgb(243, 128, 32, 0.2);
+    }
 
-        .price {
-            margin-left: auto;
+    &.namecheap {
+        border-color: #ec622b;
+        background-color: rgba(239, 146, 84, 0.2);
+    }
+
+    &.available {
+        border-color: var(--success);
+        background-color: rgb(67, 241, 176, 0.2);
+
+        a.right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 }

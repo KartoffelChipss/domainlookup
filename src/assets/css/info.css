@@ -150,8 +150,7 @@
 .box.dns .section .value.flag img {
   height: 20px;
   border-radius: 3px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 .box.dns .multival {
   display: flex;
@@ -236,12 +235,25 @@
   color: inherit;
   text-decoration: underline;
 }
+.infobox .right {
+  margin-left: auto;
+}
 .infobox.cloudflare {
   border-color: #f38020;
   background-color: rgba(243, 128, 32, 0.2);
 }
-.infobox.cloudflare .price {
-  margin-left: auto;
+.infobox.namecheap {
+  border-color: #ec622b;
+  background-color: rgba(239, 146, 84, 0.2);
+}
+.infobox.available {
+  border-color: var(--success);
+  background-color: rgba(67, 241, 176, 0.2);
+}
+.infobox.available a.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #otherlist .similardomains a {
@@ -291,4 +303,6 @@
   #otherlist .similardomains button span {
     display: none;
   }
-}/*# sourceMappingURL=info.css.map */
+}
+
+/*# sourceMappingURL=info.css.map */

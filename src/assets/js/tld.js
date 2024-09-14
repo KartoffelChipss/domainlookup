@@ -3,8 +3,6 @@ const whoislist = document.getElementById("whoislist");
 
 function fetchTLDdata(forceReload = false) {
     fetchAsync(`/api/tld/${query}?forceReload=${forceReload}`).then((data) => {
-        let alldata = {};
-    
         if (!data) {
             console.log("Recieved no data!");
             return;
@@ -27,9 +25,7 @@ function fetchTLDdata(forceReload = false) {
             </div>`;
         }
     
-        alldata = data;
-    
-        console.log(alldata);
+        console.log(data);
     
         whoislist.innerHTML += `<div class="box" id="whoisMainBox"></div>`;
     
@@ -39,53 +35,49 @@ function fetchTLDdata(forceReload = false) {
                 <h2>TLD Information</h2>
             </div>`;
     
-        if (alldata["domain"])
+        if (data["domain"])
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Domain:</span>
-                <span class="value">${alldata["domain"]}</span>
+                <span class="value">${data["domain"]}</span>
             </div>`;
     
-        if (alldata["created"])
+        if (data["created"])
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Created on:</span>
-                <span class="value">${formatDate(alldata["created"])}</span>
+                <span class="value">${formatDate(data["created"])}</span>
             </div>`;
     
-        if (alldata["changed"])
+        if (data["changed"])
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Updated on:</span>
-                <span class="value">${formatDate(alldata["changed"])}</span>
+                <span class="value">${formatDate(data["changed"])}</span>
             </div>`;
     
-        if (alldata.organisation?.organisation)
+        if (data.organisation)
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Organisation:</span>
-                <span class="value">${alldata.organisation?.organisation}</span>
+                <span class="value">${data.organisation}</span>
             </div>`;
     
-        if (alldata["status"])
+        if (data["status"])
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Status:</span>
-                <span class="value">${alldata["status"]}</span>
+                <span class="value">${data["status"]}</span>
             </div>`;
     
-        if (alldata["whois"])
+        if (data["whoisServer"])
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Whois:</span>
-                <span class="value">${alldata["whois"]}</span>
+                <span class="value">${data["whoisServer"]}</span>
             </div>`;
-    
-        console.log(alldata.contacts?.administrative);
-    
-        let hasAdminInfo = alldata.contacts?.administrative?.address || alldata.contacts?.administrative?.contact || alldata.contacts?.administrative["e-mail"] || alldata.contacts?.administrative["fax-no"] || alldata.contacts?.administrative?.name || alldata.contacts?.administrative?.organisation || alldata.contacts?.administrative?.phone;
-    
-        if (hasAdminInfo) {
+
+        if (data.hasAdminInfo) {
             whoislist.innerHTML += `<div class="box" id="whoisAdminBox"></div>`;
     
             document.getElementById("whoisAdminBox").innerHTML += `
@@ -94,14 +86,14 @@ function fetchTLDdata(forceReload = false) {
                     <h2>Administrative Contact</h2>
                 </div>`;
     
-            if (alldata.contacts?.administrative?.name)
+            if (data.adminInfo?.name)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Name:</span>
-                    <span class="value">${alldata.contacts?.administrative?.name}</span>
+                    <span class="value">${data.adminInfo?.name}</span>
                 </div>`;
     
-            if (alldata.contacts?.administrative?.organisation)
+            if (data.adminInfo?.organisation)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Organization:</span>
@@ -109,27 +101,25 @@ function fetchTLDdata(forceReload = false) {
                         fetchDomainData(true);
                     }="section">
                     <span class="label">Adress:</span>
-                    <span class="value">${alldata.contacts?.administrative?.address.replaceAll("\n", "<br>")}</span>
+                    <span class="value">${data.adminInfo?.address.replaceAll("\n", "<br>")}</span>
                 </div>`;
     
-            if (alldata.contacts?.administrative["e-mail"])
+            if (data.adminInfo.email)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">E-Mail:</span>
-                    <span class="value">${alldata.contacts?.administrative["e-mail"]}</span>
+                    <span class="value">${data.adminInfo.email}</span>
                 </div>`;
     
-            if (alldata.contacts?.administrative["fax-no"])
+            if (data.adminInfo.fax)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Fax:</span>
-                    <span class="value">${alldata.contacts?.administrative["fax-no"]}</span>
+                    <span class="value">${data.adminInfo.fax}</span>
                 </div>`;
         }
-    
-        let hasTechInfo = alldata.contacts?.technical?.address || alldata.contacts?.technical?.contact || alldata.contacts?.technical["e-mail"] || alldata.contacts?.technical["fax-no"] || alldata.contacts?.technical?.name || alldata.contacts?.technical?.organisation || alldata.contacts?.technical?.phone;
-    
-        if (hasTechInfo) {
+
+        if (data.hasTechInfo) {
             whoislist.innerHTML += `<div class="box" id="whoisTechBox"></div>`;
     
             document.getElementById("whoisTechBox").innerHTML += `
@@ -138,43 +128,43 @@ function fetchTLDdata(forceReload = false) {
                     <h2>Technical Contact</h2>
                 </div>`;
     
-            if (alldata.contacts?.technical?.name)
+            if (data.techInfo?.name)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Name:</span>
-                    <span class="value">${alldata.contacts?.technical?.name}</span>
+                    <span class="value">${data.techInfo?.name}</span>
                 </div>`;
     
-            if (alldata.contacts?.technical?.organisation)
+            if (data.techInfo?.organisation)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Organization:</span>
-                    <span class="value">${alldata.contacts?.technical?.organisation}</span>
+                    <span class="value">${data.techInfo?.organisation}</span>
                 </div>`;
     
-            if (alldata.contacts?.technical?.address)
+            if (data.techInfo?.address)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Adress:</span>
-                    <span class="value">${alldata.contacts?.technical?.address.replaceAll("\n", "<br>")}</span>
+                    <span class="value">${data.techInfo?.address.replaceAll("\n", "<br>")}</span>
                 </div>`;
     
-            if (alldata.contacts?.technical["e-mail"])
+            if (data.techInfo.email)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">E-Mail:</span>
-                    <span class="value">${alldata.contacts?.technical["e-mail"]}</span>
+                    <span class="value">${data.techInfo.email}</span>
                 </div>`;
     
-            if (alldata.contacts?.technical["fax-no"])
+            if (data.techInfo.fax)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Fax:</span>
-                    <span class="value">${alldata.contacts?.technical["fax-no"]}</span>
+                    <span class="value">${data.techInfo.fax}</span>
                 </div>`;
         }
     
-        if (alldata.__raw) {
+        if (data.raw) {
             whoislist.innerHTML += `<div class="rawbox box" id="rawbox">
                     <div class="head">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 17H13M9 13H13M9 9H10M17 18V21M17 15H17.01M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H13M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19M19 9V11.5" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
@@ -184,7 +174,7 @@ function fetchTLDdata(forceReload = false) {
                     </div>
                 </div>`;
     
-            document.getElementById("rawbox").querySelector(".content").innerHTML += alldata.__raw.replaceAll("\n", "<br>");
+            document.getElementById("rawbox").querySelector(".content").innerHTML += data.raw.replaceAll("\n", "<br>");
         }
     });
 }

@@ -3,7 +3,6 @@ const domainObj = getDomainObj(query);
 const whoislist = document.getElementById("whoislist");
 const dnslist = document.getElementById("dnslist");
 const otherlist = document.getElementById("otherlist");
-let queryiedWhoisServers = [];
 
 otherlist.innerHTML = "";
 otherlist.innerHTML += `<div class="refreshbox"><span>Updated now</span></div>`;
@@ -11,18 +10,16 @@ otherlist.innerHTML += `<div class="infoboxes"></div>`;
 
 function fetchDomainData(domain, forceReload = false) {
     fetchAsync(`/api/domain/${domain}?forceReload=${forceReload}`).then((data) => {
-        let alldata = {};
-
         if (!data) {
             console.log("Recieved no data!");
             return;
         }
 
-        if (data.cfPrice) {
+        if (data.cfPrice && !forceReload) {
             otherlist.querySelector(".infoboxes").innerHTML += `<div class="infobox cloudflare">
                 <svg style="scale: 1.2;" fill="#fefefe" viewBox="0 -3.5 31 31" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe" stroke-width="0.00031000000000000005"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="m21.462 18.152c.071-.194.112-.417.112-.651 0-.394-.117-.76-.318-1.067l.005.007c-.321-.413-.817-.677-1.376-.677-.002 0-.004 0-.006 0l-11.257-.146c-.001 0-.001 0-.002 0-.071 0-.134-.036-.171-.09v-.001c-.023-.038-.037-.083-.037-.132 0-.025.004-.049.01-.071v.002c.042-.112.143-.192.264-.202h.001l11.353-.146c1.505-.168 2.749-1.135 3.309-2.461l.01-.027.655-1.687c.017-.041.027-.088.027-.138 0-.029-.003-.057-.01-.084v.002c-.765-3.332-3.704-5.78-7.216-5.78-3.234 0-5.983 2.076-6.987 4.968l-.016.052c-.549-.416-1.244-.667-1.997-.667-1.718 0-3.131 1.303-3.306 2.974l-.001.014c-.01.101-.016.218-.016.336 0 .293.036.578.104.85l-.005-.024c-2.551.075-4.59 2.161-4.59 4.722v.006c.002.244.019.481.05.715l-.003-.029c.017.108.108.19.219.192h20.776c.125-.002.23-.086.265-.2l.001-.002z"></path><path d="m25.046 10.919c-.101 0-.21 0-.311.008-.077.005-.141.057-.164.127v.001l-.439 1.528c-.071.194-.112.417-.112.651 0 .394.117.76.318 1.067l-.005-.007c.321.413.817.677 1.376.677h.006l2.4.146h.002c.071 0 .134.036.171.09v.001c.023.038.037.084.037.133 0 .024-.003.048-.01.07v-.002c-.042.112-.143.192-.264.202h-.001l-2.496.146c-1.507.162-2.754 1.128-3.315 2.455l-.01.027-.182.467c-.006.015-.01.032-.01.051 0 .073.059.132.132.132h.007 8.578.003c.103 0 .189-.069.216-.163v-.002c.144-.499.227-1.072.228-1.664-.002-3.394-2.754-6.145-6.149-6.145-.002 0-.003 0-.005 0z"></path></g></svg>
                 <span>Cloudflare Price</span>
-                <span class="price">~ <b>${data.cfPrice}</b> / y</span>
+                <span class="price right">~ <b>${data.cfPrice}</b> / y</span>
             </div>`;
         }
 
@@ -50,30 +47,17 @@ function fetchDomainData(domain, forceReload = false) {
             </div>`;
         }
 
-        for (let servername in data) {
-            // if (data[servername] && data[servername].__raw) {
-            //     const newSpan = document.createElement("span");
-            //     newSpan.style.display = "none";
-            //     newSpan.id = `${servername}_raw_content`;
-            //     newSpan.innerHTML = data[servername].__raw;
-            //     document.body.appendChild(newSpan);
-
-            //     otherlist.innerHTML += `<button type="button" onclick="downloadTxtFile(document.getElementById('${servername}_raw_content').innerHTML, '${servername}.txt')">${servername}</button>`;
-            // }
-
-            for (let label in data[servername]) {
-                alldata[label] = data[servername][label];
-            }
-        }
-
-        if ((alldata["Domain Status"].includes("free") || !alldata["Name Server"] || alldata["Name Server"].length <= 0) && !alldata.__raw.includes("Too many queries from your IP")) {
-            whoislist.innerHTML += `<div class="infobox">
+        if ((data.status.includes("free") || !data.nameServers || data.nameServers.length <= 0) && !data.raw.includes("Too many queries from your IP")) {
+            whoislist.innerHTML += `<div class="infobox available">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8H12.01M12 11V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fefefe" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 <span>It appears that this domain has not been registered yet.</span>
+                <a class="right" href="https://www.namecheap.com/domains/registration/results/?domain=${domain}" target="_blank" rel="noreferrer noopener">
+                    <svg viewBox="0 -57 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#fefefe" stroke="#fefefe" stroke-width="0.00256"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <linearGradient x1="13.3220455%" y1="94.9449067%" x2="82.6195455%" y2="1.13156385%" id="linearGradient-1"> <stop stop-color="#fefefe" offset="0%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.9583" offset="4.166156%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.824" offset="17.6%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.6833" offset="31.67%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.5365" offset="46.35%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.3812" offset="61.88%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.2114" offset="78.86%"> </stop> <stop stop-color="#fefefe" stop-opacity="0" offset="100%"> </stop> </linearGradient> <linearGradient x1="86.6243182%" y1="5.04045911%" x2="17.3261364%" y2="98.8545194%" id="linearGradient-2"> <stop stop-color="#fefefe" offset="0%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.9583" offset="4.166156%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.824" offset="17.6%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.6833" offset="31.67%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.5365" offset="46.35%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.3812" offset="61.88%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.2114" offset="78.86%"> </stop> <stop stop-color="#fefefe" stop-opacity="0" offset="100%"> </stop> </linearGradient> </defs> <g> <path d="M232,0 C223,0 215.2,5 211.1,12.3 L210.6,13.3 L191.8,50.3 L168,97.2 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C199.3,137.2 202.9,133.8 205.3,129.6 L206.2,127.9 L252.9,35.9 L254,33.7 C255.3,30.7 256,27.5 256,24 C256,10.7 245.3,0 232,0 L232,0 Z" fill="#fefefe"> </path> <path d="M87.9,44.6 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C56.7,4.7 53.1,8.1 50.7,12.3 L49.9,14 L3.2,106 L2.1,108.2 C0.8,111.2 0.1,114.4 0.1,117.9 C0.1,131.1 10.8,141.9 24.1,141.9 C33.1,141.9 40.9,136.9 45,129.6 L45.5,128.6 L64.3,91.6 L88,44.7 L87.9,44.6 L87.9,44.6 Z" fill="#fefefe"> </path> <path d="M232,0 C223,0 215.1,5 211.1,12.3 L210.6,13.3 L191.8,50.3 L168,97.2 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C199.3,137.2 202.9,133.8 205.3,129.6 L206.2,127.9 L252.9,35.9 L254,33.7 C255.3,30.7 256,27.5 256,24 C256,10.7 245.2,0 232,0 L232,0 Z" fill="url(#linearGradient-1)"> </path> <path d="M24,141.9 C33,141.9 40.9,136.9 44.9,129.6 L45.4,128.6 L64.2,91.6 L88,44.7 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C56.7,4.7 53.1,8.1 50.7,12.3 L49.9,14 L3.2,106 L2,108.3 C0.7,111.3 0,114.5 0,118 C0,131.2 10.7,141.9 24,141.9 L24,141.9 Z" fill="url(#linearGradient-2)"> </path> <path d="M87.9,44.6 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C62.5,1.8 64.1,1.2 65.6,0.8 C67.5,0.3 69.6,0 71.6,0 L71.6,0 L104,0 L104.2,0 L104.4,0 C113.4,0.1 121.2,5 125.3,12.3 L126,14 L168.1,97.3 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C193.5,140.1 191.9,140.7 190.4,141.1 C188.5,141.6 186.4,141.9 184.3,141.9 L184.3,141.9 L152.1,141.9 L151.9,141.9 L151.7,141.9 C142.7,141.8 134.9,136.9 130.8,129.6 L129.9,127.9 L87.9,44.6 L87.9,44.6 Z" fill="#fefefe"> </path> </g> </g></svg>
+                </a>
             </div>`;
         }
 
-        console.log("Whois:", alldata);
+        console.log("Whois:", data);
 
         whoislist.innerHTML += `<div class="box" id="whoisMainBox"></div>`;
 
@@ -83,44 +67,44 @@ function fetchDomainData(domain, forceReload = false) {
                 <h2>Domain Information</h2>
             </div>`;
 
-        if (alldata["Domain Name"])
+        if (data.domain)
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Domain:</span>
-                <span class="value">${alldata["Domain Name"]}</span>
+                <span class="value">${data.domain}</span>
             </div>`;
 
-        if (alldata["Registrar"])
+        if (data.registrar)
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Registrar:</span>
-                <span class="value">${alldata["Registrar"]}</span>
+                <span class="value">${data.registrar}</span>
             </div>`;
 
-        if (alldata["Created Date"])
+        if (data.creationDate)
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Registered on:</span>
-                <span class="value">${formatDate(alldata["Created Date"])}</span>
+                <span class="value">${formatDate(data.creationDate)}</span>
             </div>`;
 
-        if (alldata["Expiry Date"])
+        if (data.expiryDate)
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Expires on:</span>
-                <span class="value">${formatDate(alldata["Expiry Date"])}</span>
+                <span class="value">${formatDate(data.expiryDate)}</span>
             </div>`;
 
-        if (alldata["Updated Date"])
+        if (data.updatedDate)
             document.getElementById("whoisMainBox").innerHTML += `
             <div class="section">
                 <span class="label">Updated on:</span>
-                <span class="value">${formatDate(alldata["Updated Date"])}</span>
+                <span class="value">${formatDate(data.updatedDate)}</span>
             </div>`;
 
-        if (alldata["Domain Status"] && alldata["Domain Status"].length > 0) {
+        if (data.status && data.status.length > 0) {
             let statuslist = ``;
-            for (let status of alldata["Domain Status"]) {
+            for (let status of data.status) {
                 status = status.split(" ")[0] ?? status;
                 statuslist += `<span class="value">${status}</span>`;
             }
@@ -132,9 +116,9 @@ function fetchDomainData(domain, forceReload = false) {
                 </div>`;
         }
 
-        if (alldata["Name Server"] && alldata["Name Server"].length > 0) {
+        if (data.nameServers && data.nameServers.length > 0) {
             let nameserverslist = ``;
-            for (let nameserver of alldata["Name Server"]) {
+            for (let nameserver of data.nameServers) {
                 nameserverslist += `<a href="/domain/${nameserver}" class="value">${nameserver}</a>`;
             }
 
@@ -145,9 +129,7 @@ function fetchDomainData(domain, forceReload = false) {
                 </div>`;
         }
 
-        let hasRegistrantInfo = alldata["Registrant Name"] || alldata["Registrant Organization"] || alldata["Registrant Street"] || alldata["Registrant City"] || alldata["Registrant State/Province"] || alldata["Registrant Postal Code"] || alldata["Registrant Country"] || alldata["Registrant Phone"] || alldata["Registrant Fax"] || (alldata["Registrant Email"] && alldata["Registrant Email"].includes("@"));
-
-        if (hasRegistrantInfo) {
+        if (data.hasRegistrantInfo) {
             whoislist.innerHTML += `<div class="box" id="whoisRegistrantBox"></div>`;
 
             document.getElementById("whoisRegistrantBox").innerHTML += `
@@ -156,80 +138,78 @@ function fetchDomainData(domain, forceReload = false) {
                     <h2>Registrant Contact</h2>
                 </div>`;
 
-            if (alldata["Registrant Name"])
+            if (data.registrantInfo.name)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Name:</span>
-                    <span class="value">${alldata["Registrant Name"]}</span>
+                    <span class="value">${data.registrantInfo.name}</span>
                 </div>`;
 
-            if (alldata["Registrant Organization"])
+            if (data.registrantInfo.organization)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Organization:</span>
-                    <span class="value">${alldata["Registrant Organization"]}</span>
+                    <span class="value">${data.registrantInfo.organization}</span>
                 </div>`;
 
-            if (alldata["Registrant Street"])
+            if (data.registrantInfo.street)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Street:</span>
-                    <span class="value">${alldata["Registrant Street"]}</span>
+                    <span class="value">${data.registrantInfo.street}</span>
                 </div>`;
 
-            if (alldata["Registrant City"])
+            if (data.registrantInfo.city)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">City:</span>
-                    <span class="value">${alldata["Registrant City"]}</span>
+                    <span class="value">${data.registrantInfo.city}</span>
                 </div>`;
 
-            if (alldata["Registrant State/Province"])
+            if (data.registrantInfo.state)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">State/Province:</span>
-                    <span class="value">${alldata["Registrant State/Province"]}</span>
+                    <span class="value">${data.registrantInfo.state}</span>
                 </div>`;
 
-            if (alldata["Registrant Postal Code"])
+            if (data.registrantInfo.postalCode)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Postal Code:</span>
-                    <span class="value">${alldata["Registrant Postal Code"]}</span>
+                    <span class="value">${data.registrantInfo.postalCode}</span>
                 </div>`;
 
-            if (alldata["Registrant Country"])
+            if (data.registrantInfo.country)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Country:</span>
-                    <span class="value">${alldata["Registrant Country"]}</span>
+                    <span class="value">${data.registrantInfo.country}</span>
                 </div>`;
 
-            if (alldata["Registrant Phone"])
+            if (data.registrantInfo.phone)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Phone:</span>
-                    <span class="value">${alldata["Registrant Phone"]}</span>
+                    <span class="value">${data.registrantInfo.phone}</span>
                 </div>`;
 
-            if (alldata["Registrant Fax"])
+            if (data.registrantInfo.fax)
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Fax:</span>
-                    <span class="value">${alldata["Registrant Fax"]}</span>
+                    <span class="value">${data.registrantInfo.fax}</span>
                 </div>`;
 
-            if (alldata["Registrant Email"] && alldata["Registrant Email"].includes("@"))
+            if (data.registrantInfo.email && data.registrantInfo.email.includes("@"))
                 document.getElementById("whoisRegistrantBox").innerHTML += `
                 <div class="section">
                     <span class="label">Email:</span>
-                    <span class="value">${alldata["Registrant Email"]}</span>
+                    <span class="value">${data.registrantInfo.email}</span>
                 </div>`;
         }
 
-        let hasAdminInfo = alldata["Admin Name"] || alldata["Admin Organization"] || alldata["Admin Street"] || alldata["Admin City"] || alldata["Admin State/Province"] || alldata["Admin Postal Code"] || alldata["Admin Country"] || alldata["Admin Phone"] || alldata["Admin Fax"] || (alldata["Admin Email"] && alldata["Admin Email"].includes("@"));
-
-        if (hasAdminInfo) {
+        if (data.hasAdminInfo) {
             whoislist.innerHTML += `<div class="box" id="whoisAdminBox"></div>`;
 
             document.getElementById("whoisAdminBox").innerHTML += `
@@ -238,80 +218,78 @@ function fetchDomainData(domain, forceReload = false) {
                     <h2>Administrative Contact</h2>
                 </div>`;
 
-            if (alldata["Admin Name"])
+            if (data.adminInfo.name)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Name:</span>
-                    <span class="value">${alldata["Admin Name"]}</span>
+                    <span class="value">${data.adminInfo.name}</span>
                 </div>`;
 
-            if (alldata["Admin Organization"])
+            if (data.adminInfo.organization)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Organization:</span>
-                    <span class="value">${alldata["Admin Organization"]}</span>
+                    <span class="value">${data.adminInfo.organization}</span>
                 </div>`;
 
-            if (alldata["Admin Street"])
+            if (data.adminInfo.street)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Street:</span>
-                    <span class="value">${alldata["Admin Street"]}</span>
+                    <span class="value">${data.adminInfo.street}</span>
                 </div>`;
 
-            if (alldata["Admin City"])
+            if (data.adminInfo.city)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">City:</span>
-                    <span class="value">${alldata["Admin City"]}</span>
+                    <span class="value">${data.adminInfo.city}</span>
                 </div>`;
 
-            if (alldata["Admin State/Province"])
+            if (data.adminInfo.state)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">State/Province:</span>
-                    <span class="value">${alldata["Admin State/Province"]}</span>
+                    <span class="value">${data.adminInfo.state}</span>
                 </div>`;
 
-            if (alldata["Admin Postal Code"])
+            if (data.adminInfo.postalCode)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Postal Code:</span>
-                    <span class="value">${alldata["Admin Postal Code"]}</span>
+                    <span class="value">${data.adminInfo.postalCode}</span>
                 </div>`;
 
-            if (alldata["Admin Country"])
+            if (data.adminInfo.country)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Country:</span>
-                    <span class="value">${alldata["Admin Country"]}</span>
+                    <span class="value">${data.adminInfo.country}</span>
                 </div>`;
 
-            if (alldata["Admin Phone"])
+            if (data.adminInfo.phone)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Phone:</span>
-                    <span class="value">${alldata["Admin Phone"]}</span>
+                    <span class="value">${data.adminInfo.phone}</span>
                 </div>`;
 
-            if (alldata["Admin Fax"])
+            if (data.adminInfo.fax)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Fax:</span>
-                    <span class="value">${alldata["Admin Fax"]}</span>
+                    <span class="value">${data.adminInfo.fax}</span>
                 </div>`;
 
-            if (alldata["Admin Email"] && alldata["Admin Email"].includes("@"))
+            if (data.adminInfo.email && data.adminInfo.email.includes("@"))
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Email:</span>
-                    <span class="value">${alldata["Admin Email"]}</span>
+                    <span class="value">${data.adminInfo.email}</span>
                 </div>`;
         }
 
-        let hasTechInfo = alldata["Tech Name"] || alldata["Tech Organization"] || alldata["Tech Street"] || alldata["Tech City"] || alldata["Tech State/Province"] || alldata["Tech Postal Code"] || alldata["Tech Country"] || alldata["Tech Phone"] || alldata["Tech Fax"] || (alldata["Tech Email"] && alldata["Tech Email"].includes("@"));
-
-        if (hasTechInfo) {
+        if (data.hasTechInfo) {
             whoislist.innerHTML += `<div class="box" id="whoisTechBox"></div>`;
 
             document.getElementById("whoisTechBox").innerHTML += `
@@ -320,78 +298,78 @@ function fetchDomainData(domain, forceReload = false) {
                     <h2>Technical Contact</h2>
                 </div>`;
 
-            if (alldata["Tech Name"])
+            if (data.techInfo.name)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Name:</span>
-                    <span class="value">${alldata["Tech Name"]}</span>
+                    <span class="value">${data.techInfo.name}</span>
                 </div>`;
 
-            if (alldata["Tech Organization"])
+            if (data.techInfo.organization)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Organization:</span>
-                    <span class="value">${alldata["Tech Organization"]}</span>
+                    <span class="value">${data.techInfo.organization}</span>
                 </div>`;
 
-            if (alldata["Tech Street"])
+            if (data.techInfo.street)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Street:</span>
-                    <span class="value">${alldata["Tech Street"]}</span>
+                    <span class="value">${data.techInfo.street}</span>
                 </div>`;
 
-            if (alldata["Tech City"])
+            if (data.techInfo.city)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">City:</span>
-                    <span class="value">${alldata["Tech City"]}</span>
+                    <span class="value">${data.techInfo.city}</span>
                 </div>`;
 
-            if (alldata["Tech State/Province"])
+            if (data.techInfo.state)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">State/Province:</span>
-                    <span class="value">${alldata["Tech State/Province"]}</span>
+                    <span class="value">${data.techInfo.state}</span>
                 </div>`;
 
-            if (alldata["Tech Postal Code"])
+            if (data.techInfo.postalCode)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Postal Code:</span>
-                    <span class="value">${alldata["Tech Postal Code"]}</span>
+                    <span class="value">${data.techInfo.postalCode}</span>
                 </div>`;
 
-            if (alldata["Tech Country"])
+            if (data.techInfo.country)
                 document.getElementById("whoisAdminBox").innerHTML += `
                 <div class="section">
                     <span class="label">Country:</span>
-                    <span class="value">${alldata["Tech Country"]}</span>
+                    <span class="value">${data.techInfo.country}</span>
                 </div>`;
 
-            if (alldata["Tech Phone"])
+            if (data.techInfo.phone)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Phone:</span>
-                    <span class="value">${alldata["Tech Phone"]}</span>
+                    <span class="value">${data.techInfo.phone}</span>
                 </div>`;
 
-            if (alldata["Tech Fax"])
+            if (data.techInfo.fax)
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Fax:</span>
-                    <span class="value">${alldata["Tech Fax"]}</span>
+                    <span class="value">${data.techInfo.fax}</span>
                 </div>`;
 
-            if (alldata["Tech Email"] && alldata["Tech Email"].includes("@"))
+            if (data.techInfo.email && data.techInfo.email.includes("@"))
                 document.getElementById("whoisTechBox").innerHTML += `
                 <div class="section">
                     <span class="label">Email:</span>
-                    <span class="value">${alldata["Tech Email"]}</span>
+                    <span class="value">${data.techInfo.email}</span>
                 </div>`;
         }
 
-        if (alldata.__raw) {
+        if (data.raw) {
             whoislist.innerHTML += `<div class="rawbox box" id="rawbox">
                 <div class="head">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 17H13M9 13H13M9 9H10M17 18V21M17 15H17.01M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H13M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19M19 9V11.5" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
@@ -401,7 +379,7 @@ function fetchDomainData(domain, forceReload = false) {
                 </div>
             </div>`;
 
-            document.getElementById("rawbox").querySelector(".content").innerHTML += alldata.__raw.replaceAll("\n", "<br>");
+            document.getElementById("rawbox").querySelector(".content").innerHTML += data.raw.replaceAll("\n", "<br>");
         }
     });
 }
@@ -594,11 +572,12 @@ function initOtherPage() {
             similarDomainsBox.innerHTML += `
                 <div class="section button-spacebetween similardomains" id="similardomain-${domain}">
                     <a href="/domain/${domain}" class="value">${domain}</a>
-                    <button type="button" onclick="checkSimilarDomain(this)">
+                    <button type="button">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         <span>Check</span>
                     </button>
                 </div>`;
+            checkSimilarDomain(document.getElementById(`similardomain-${domain}`).querySelector("button"), `similardomain-${domain}`);
         });
     } else {
         similarDomainsBox.innerHTML += `
@@ -633,9 +612,9 @@ initOtherPage();
 
 function forceRefreshData(ele, section = "whois") {
     if (section === "whois") {
-        fetchDomainData(true);
+        fetchDomainData(domainObj.domain, true);
     } else if (section === "dns") {
-        fetchDNS(true);
+        fetchDNS(domainObj.domain, true);
     }
 
     ele.classList.add("anim");
@@ -685,7 +664,7 @@ function downloadTxtFile(content, filename) {
 function getSmilarDomains(domainObject) {
     let similarDomains = [];
 
-    const popularTLDs = [ "com", "net", "org", "me", "io", "de", "info" ];
+    const popularTLDs = [ "com", "net", "de", "me", "dev", "io", "org", "info", "app", "xyz", "bio", "sh", "gg", "fish" ];
 
     for (let tld of popularTLDs) {
         if (tld !== domainObject.tld) similarDomains.push(`${domainObject.domainName}.${tld}`);
@@ -694,19 +673,25 @@ function getSmilarDomains(domainObject) {
     return similarDomains;
 }
 
-function checkSimilarDomain(btn) {
+async function checkSimilarDomain(btn, id) {
     const domain = btn.parentElement.querySelector("a").innerText;
     btn.innerHTML = `<img src="/assets/img/loader.svg" alt="loader" class="loading">`;
-    fetchAsync(`/api/checkAvailability/${domain}`).then(data => {
+
+    try {
+        const data = await fetchAsync(`/api/checkAvailability/${domain}`)
+        const newBtn = document.getElementById(id).querySelector("button");
+
         if (!data || data.status === "ERROR") return;
 
         if (data.available) {
-            btn.classList.add("available");
-            btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><span>Available</span>`;
+            newBtn.classList.add("available");
+            newBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><span>Available</span>`;
         } else {
-            btn.classList.add("unavailable");
-            btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.364 18.364C19.9926 16.7353 21 14.4853 21 12C21 7.02944 16.9706 3 12 3C9.51472 3 7.26472 4.00736 5.63604 5.63604M18.364 18.364C16.7353 19.9926 14.4853 21 12 21C7.02944 21 3 16.9706 3 12C3 9.51472 4.00736 7.26472 5.63604 5.63604M18.364 18.364L5.63604 5.63604" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                <span>Unavailable</span>`;
+            newBtn.classList.add("unavailable");
+            newBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.364 18.364C19.9926 16.7353 21 14.4853 21 12C21 7.02944 16.9706 3 12 3C9.51472 3 7.26472 4.00736 5.63604 5.63604M18.364 18.364C16.7353 19.9926 14.4853 21 12 21C7.02944 21 3 16.9706 3 12C3 9.51472 4.00736 7.26472 5.63604 5.63604M18.364 18.364L5.63604 5.63604" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                    <span>Unavailable</span>`;
         }
-    });
+    } catch (e) {
+        console.error(e);
+    }
 }
