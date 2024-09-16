@@ -27,9 +27,26 @@
         align-items: flex-start;
     }
 
-    h1 {
-        margin: 0;
-        font-size: 34px;
+    .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        h1 {
+            margin: 0;
+            font-size: 34px;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+
+            svg {
+                --wh: 20px;
+                height: var(--wh);
+                width: var(--wh);
+            }
+        }
     }
 
     .tabs {
@@ -316,9 +333,26 @@
 #otherlist {
 
     .similardomains {
-        a {
-            font-weight: 600;
-            font-size: 20px;
+        .label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            a {
+                font-weight: 600;
+                font-size: 20px;
+
+                &:last-of-type {
+                    display: flex;
+                    align-items: center;
+                }
+
+                svg {
+                    --wh: 20px;
+                    height: var(--wh);
+                    width: var(--wh);
+                }
+            }
         }
 
         button {

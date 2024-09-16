@@ -1,7 +1,7 @@
 import {Request, Response, Router} from 'express';
 import NodeCache from "node-cache";
 import {requireAuth} from "../util/auth";
-import {isDomainAvailable, getDomainWhoisData,getTldWhoisData} from "../util/whois";
+import {getDomainWhoisData,getTldWhoisData} from "../util/whois";
 import {DnsData, lookupNSRecords} from "../util/dns";
 import {lookupDnsData} from "../util/dns";
 
@@ -47,10 +47,10 @@ router.get("/checkAvailability/:query", requireAuth, async (req: Request, res: R
     const domain = req.params.query;
     const forceReload = req.query.forceReload === "true";
     const cacheOnly = req.query.cacheOnly === "true";
-    const cachedResult: any = whoisCache.get(domain);
+    const cachedResult: any = dnsCache.get(domain);
 
     if (cachedResult && !forceReload) {
-        return res.send({ status: "OK", available: isDomainAvailable(cachedResult), cachedAt: cachedResult?.cachedAt }).status(200);
+        return res.send({ status: "OK", available: cachedResult?.NS?.length <= 0, cachedAt: cachedResult?.cachedAt }).status(200);
     }
 
     if (cacheOnly) return res.send({ status: "ERROR", error: "No cached result found" }).status(500);

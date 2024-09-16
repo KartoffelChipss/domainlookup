@@ -51,12 +51,13 @@ router.get("/domain/:query", auth_1.requireAuth, (req, res) => {
     });
 });
 router.get("/checkAvailability/:query", auth_1.requireAuth, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a;
     const domain = req.params.query;
     const forceReload = req.query.forceReload === "true";
     const cacheOnly = req.query.cacheOnly === "true";
-    const cachedResult = whoisCache.get(domain);
+    const cachedResult = dnsCache.get(domain);
     if (cachedResult && !forceReload) {
-        return res.send({ status: "OK", available: (0, whois_1.isDomainAvailable)(cachedResult), cachedAt: cachedResult === null || cachedResult === void 0 ? void 0 : cachedResult.cachedAt }).status(200);
+        return res.send({ status: "OK", available: ((_a = cachedResult === null || cachedResult === void 0 ? void 0 : cachedResult.NS) === null || _a === void 0 ? void 0 : _a.length) <= 0, cachedAt: cachedResult === null || cachedResult === void 0 ? void 0 : cachedResult.cachedAt }).status(200);
     }
     if (cacheOnly)
         return res.send({ status: "ERROR", error: "No cached result found" }).status(500);

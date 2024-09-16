@@ -4,6 +4,8 @@ const whoislist = document.getElementById("whoislist");
 const dnslist = document.getElementById("dnslist");
 const otherlist = document.getElementById("otherlist");
 
+const popularTLDs = [ "com", "net", "de", "me", "dev", "io", "org", "info", "app", "xyz", "bio", "sh", "gg", "moe", "fish" ];
+
 otherlist.innerHTML = "";
 otherlist.innerHTML += `<div class="refreshbox"><span>Updated now</span></div>`;
 otherlist.innerHTML += `<div class="infoboxes"></div>`;
@@ -47,7 +49,10 @@ function fetchDomainData(domain, forceReload = false) {
             </div>`;
         }
 
-        if ((data.status.includes("free") || !data.nameServers || data.nameServers.length <= 0) && !data.raw.includes("Too many queries from your IP")) {
+        const hasNameServers = data.nameServers && data.nameServers.length > 0;
+        const tooManyQueries = data.raw?.includes("Too many queries from your IP");
+
+        if (!hasNameServers && !tooManyQueries) {
             whoislist.innerHTML += `<div class="infobox available">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 8H12.01M12 11V16M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#fefefe" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                 <span>It appears that this domain has not been registered yet.</span>
@@ -55,6 +60,8 @@ function fetchDomainData(domain, forceReload = false) {
                     <svg viewBox="0 -57 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#fefefe" stroke="#fefefe" stroke-width="0.00256"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <linearGradient x1="13.3220455%" y1="94.9449067%" x2="82.6195455%" y2="1.13156385%" id="linearGradient-1"> <stop stop-color="#fefefe" offset="0%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.9583" offset="4.166156%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.824" offset="17.6%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.6833" offset="31.67%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.5365" offset="46.35%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.3812" offset="61.88%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.2114" offset="78.86%"> </stop> <stop stop-color="#fefefe" stop-opacity="0" offset="100%"> </stop> </linearGradient> <linearGradient x1="86.6243182%" y1="5.04045911%" x2="17.3261364%" y2="98.8545194%" id="linearGradient-2"> <stop stop-color="#fefefe" offset="0%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.9583" offset="4.166156%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.824" offset="17.6%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.6833" offset="31.67%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.5365" offset="46.35%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.3812" offset="61.88%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.2114" offset="78.86%"> </stop> <stop stop-color="#fefefe" stop-opacity="0" offset="100%"> </stop> </linearGradient> </defs> <g> <path d="M232,0 C223,0 215.2,5 211.1,12.3 L210.6,13.3 L191.8,50.3 L168,97.2 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C199.3,137.2 202.9,133.8 205.3,129.6 L206.2,127.9 L252.9,35.9 L254,33.7 C255.3,30.7 256,27.5 256,24 C256,10.7 245.3,0 232,0 L232,0 Z" fill="#fefefe"> </path> <path d="M87.9,44.6 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C56.7,4.7 53.1,8.1 50.7,12.3 L49.9,14 L3.2,106 L2.1,108.2 C0.8,111.2 0.1,114.4 0.1,117.9 C0.1,131.1 10.8,141.9 24.1,141.9 C33.1,141.9 40.9,136.9 45,129.6 L45.5,128.6 L64.3,91.6 L88,44.7 L87.9,44.6 L87.9,44.6 Z" fill="#fefefe"> </path> <path d="M232,0 C223,0 215.1,5 211.1,12.3 L210.6,13.3 L191.8,50.3 L168,97.2 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C199.3,137.2 202.9,133.8 205.3,129.6 L206.2,127.9 L252.9,35.9 L254,33.7 C255.3,30.7 256,27.5 256,24 C256,10.7 245.2,0 232,0 L232,0 Z" fill="url(#linearGradient-1)"> </path> <path d="M24,141.9 C33,141.9 40.9,136.9 44.9,129.6 L45.4,128.6 L64.2,91.6 L88,44.7 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C56.7,4.7 53.1,8.1 50.7,12.3 L49.9,14 L3.2,106 L2,108.3 C0.7,111.3 0,114.5 0,118 C0,131.2 10.7,141.9 24,141.9 L24,141.9 Z" fill="url(#linearGradient-2)"> </path> <path d="M87.9,44.6 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C62.5,1.8 64.1,1.2 65.6,0.8 C67.5,0.3 69.6,0 71.6,0 L71.6,0 L104,0 L104.2,0 L104.4,0 C113.4,0.1 121.2,5 125.3,12.3 L126,14 L168.1,97.3 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C193.5,140.1 191.9,140.7 190.4,141.1 C188.5,141.6 186.4,141.9 184.3,141.9 L184.3,141.9 L152.1,141.9 L151.9,141.9 L151.7,141.9 C142.7,141.8 134.9,136.9 130.8,129.6 L129.9,127.9 L87.9,44.6 L87.9,44.6 Z" fill="#fefefe"> </path> </g> </g></svg>
                 </a>
             </div>`;
+
+            document.getElementById("externalLink").remove();
         }
 
         console.log("Whois:", data);
@@ -571,7 +578,12 @@ function initOtherPage() {
         similarDomains.forEach((domain) => {
             similarDomainsBox.innerHTML += `
                 <div class="section button-spacebetween similardomains" id="similardomain-${domain}">
-                    <a href="/domain/${domain}" class="value">${domain}</a>
+                    <div class="label">
+                        <a href="/domain/${domain}" class="value">${domain}</a>
+                        <a class="right" href="https://www.namecheap.com/domains/registration/results/?domain=${domain}" target="_blank" rel="noreferrer noopener">
+                            <svg viewBox="0 -57 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" fill="#fefefe" stroke="#fefefe" stroke-width="0.00256"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <defs> <linearGradient x1="13.3220455%" y1="94.9449067%" x2="82.6195455%" y2="1.13156385%" id="linearGradient-1"> <stop stop-color="#fefefe" offset="0%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.9583" offset="4.166156%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.824" offset="17.6%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.6833" offset="31.67%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.5365" offset="46.35%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.3812" offset="61.88%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.2114" offset="78.86%"> </stop> <stop stop-color="#fefefe" stop-opacity="0" offset="100%"> </stop> </linearGradient> <linearGradient x1="86.6243182%" y1="5.04045911%" x2="17.3261364%" y2="98.8545194%" id="linearGradient-2"> <stop stop-color="#fefefe" offset="0%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.9583" offset="4.166156%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.824" offset="17.6%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.6833" offset="31.67%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.5365" offset="46.35%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.3812" offset="61.88%"> </stop> <stop stop-color="#fefefe" stop-opacity="0.2114" offset="78.86%"> </stop> <stop stop-color="#fefefe" stop-opacity="0" offset="100%"> </stop> </linearGradient> </defs> <g> <path d="M232,0 C223,0 215.2,5 211.1,12.3 L210.6,13.3 L191.8,50.3 L168,97.2 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C199.3,137.2 202.9,133.8 205.3,129.6 L206.2,127.9 L252.9,35.9 L254,33.7 C255.3,30.7 256,27.5 256,24 C256,10.7 245.3,0 232,0 L232,0 Z" fill="#fefefe"> </path> <path d="M87.9,44.6 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C56.7,4.7 53.1,8.1 50.7,12.3 L49.9,14 L3.2,106 L2.1,108.2 C0.8,111.2 0.1,114.4 0.1,117.9 C0.1,131.1 10.8,141.9 24.1,141.9 C33.1,141.9 40.9,136.9 45,129.6 L45.5,128.6 L64.3,91.6 L88,44.7 L87.9,44.6 L87.9,44.6 Z" fill="#fefefe"> </path> <path d="M232,0 C223,0 215.1,5 211.1,12.3 L210.6,13.3 L191.8,50.3 L168,97.2 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C199.3,137.2 202.9,133.8 205.3,129.6 L206.2,127.9 L252.9,35.9 L254,33.7 C255.3,30.7 256,27.5 256,24 C256,10.7 245.2,0 232,0 L232,0 Z" fill="url(#linearGradient-1)"> </path> <path d="M24,141.9 C33,141.9 40.9,136.9 44.9,129.6 L45.4,128.6 L64.2,91.6 L88,44.7 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C56.7,4.7 53.1,8.1 50.7,12.3 L49.9,14 L3.2,106 L2,108.3 C0.7,111.3 0,114.5 0,118 C0,131.2 10.7,141.9 24,141.9 L24,141.9 Z" fill="url(#linearGradient-2)"> </path> <path d="M87.9,44.6 L72.4,14 L71.5,12.3 C69.1,8.1 65.5,4.6 61.1,2.5 C62.5,1.8 64.1,1.2 65.6,0.8 C67.5,0.3 69.6,0 71.6,0 L71.6,0 L104,0 L104.2,0 L104.4,0 C113.4,0.1 121.2,5 125.3,12.3 L126,14 L168.1,97.3 L183.6,127.9 L184.5,129.6 C186.9,133.8 190.5,137.3 194.9,139.4 C193.5,140.1 191.9,140.7 190.4,141.1 C188.5,141.6 186.4,141.9 184.3,141.9 L184.3,141.9 L152.1,141.9 L151.9,141.9 L151.7,141.9 C142.7,141.8 134.9,136.9 130.8,129.6 L129.9,127.9 L87.9,44.6 L87.9,44.6 Z" fill="#fefefe"> </path> </g> </g></svg>
+                        </a>
+                    </div>
                     <button type="button">
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
                         <span>Check</span>
@@ -584,23 +596,6 @@ function initOtherPage() {
             <div class="section norecords">
                 <span>No similar domains found</span>
             </div>`;
-    }
-
-    for (let similarDomain of similarDomains) {
-        fetchAsync(`/api/checkAvailability/${similarDomain}?cacheOnly=true`).then((data) => {
-            if (!data || data.status === "ERROR") return;
-
-            const btn = document.getElementById(`similardomain-${similarDomain}`).querySelector("button");
-
-            if (data.available) {
-                btn.classList.add("available");
-                btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg><span>Available</span>`;
-            } else {
-                btn.classList.add("unavailable");
-                btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.364 18.364C19.9926 16.7353 21 14.4853 21 12C21 7.02944 16.9706 3 12 3C9.51472 3 7.26472 4.00736 5.63604 5.63604M18.364 18.364C16.7353 19.9926 14.4853 21 12 21C7.02944 21 3 16.9706 3 12C3 9.51472 4.00736 7.26472 5.63604 5.63604M18.364 18.364L5.63604 5.63604" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                    <span>Unavailable</span>`;
-            }
-        });
     }
 }
 
@@ -664,8 +659,6 @@ function downloadTxtFile(content, filename) {
 function getSmilarDomains(domainObject) {
     let similarDomains = [];
 
-    const popularTLDs = [ "com", "net", "de", "me", "dev", "io", "org", "info", "app", "xyz", "bio", "sh", "gg", "fish" ];
-
     for (let tld of popularTLDs) {
         if (tld !== domainObject.tld) similarDomains.push(`${domainObject.domainName}.${tld}`);
     }
@@ -689,7 +682,7 @@ async function checkSimilarDomain(btn, id) {
         } else {
             newBtn.classList.add("unavailable");
             newBtn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fefefe"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18.364 18.364C19.9926 16.7353 21 14.4853 21 12C21 7.02944 16.9706 3 12 3C9.51472 3 7.26472 4.00736 5.63604 5.63604M18.364 18.364C16.7353 19.9926 14.4853 21 12 21C7.02944 21 3 16.9706 3 12C3 9.51472 4.00736 7.26472 5.63604 5.63604M18.364 18.364L5.63604 5.63604" stroke="#fefefe" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                    <span>Unavailable</span>`;
+                    <span>Taken</span>`;
         }
     } catch (e) {
         console.error(e);

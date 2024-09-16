@@ -24,9 +24,23 @@
     align-items: flex-start;
   }
 }
-.titlebar h1 {
+.titlebar .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.titlebar .title h1 {
   margin: 0;
   font-size: 34px;
+}
+.titlebar .title a {
+  display: flex;
+  align-items: center;
+}
+.titlebar .title a svg {
+  --wh: 20px;
+  height: var(--wh);
+  width: var(--wh);
 }
 .titlebar .tabs {
   display: flex;
@@ -256,9 +270,23 @@
   align-items: center;
 }
 
-#otherlist .similardomains a {
+#otherlist .similardomains .label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+#otherlist .similardomains .label a {
   font-weight: 600;
   font-size: 20px;
+}
+#otherlist .similardomains .label a:last-of-type {
+  display: flex;
+  align-items: center;
+}
+#otherlist .similardomains .label a svg {
+  --wh: 20px;
+  height: var(--wh);
+  width: var(--wh);
 }
 #otherlist .similardomains button {
   display: flex;
